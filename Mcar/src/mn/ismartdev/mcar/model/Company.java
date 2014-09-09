@@ -22,7 +22,10 @@ public class Company {
 	@DatabaseField
 	public String video;
 	@DatabaseField
+	
 	public String phone;
+	@DatabaseField
+	public String logo;
 	@DatabaseField
 	public String images;
 	@DatabaseField

@@ -1359,7 +1359,7 @@ containing a value of this type.
         public static final int com_facebook_list_section_header_background=0x7f020066;
         public static final int com_facebook_loginbutton_silver=0x7f020067;
         public static final int com_facebook_logo=0x7f020068;
-        public static final int com_facebook_picker_default_separator_color=0x7f020089;
+        public static final int com_facebook_picker_default_separator_color=0x7f02008a;
         public static final int com_facebook_picker_item_background=0x7f020069;
         public static final int com_facebook_picker_list_focused=0x7f02006a;
         public static final int com_facebook_picker_list_longpressed=0x7f02006b;
@@ -1385,13 +1385,14 @@ containing a value of this type.
         public static final int com_facebook_top_button=0x7f02007f;
         public static final int com_facebook_usersettingsfragment_background_gradient=0x7f020080;
         public static final int drawer_shadow=0x7f020081;
-        public static final int ic_drawer=0x7f020082;
-        public static final int ic_launcher=0x7f020083;
-        public static final int pic0=0x7f020084;
-        public static final int pic1=0x7f020085;
-        public static final int splash_android=0x7f020086;
-        public static final int splash_back=0x7f020087;
-        public static final int splash_icon=0x7f020088;
+        public static final int ic_action_search=0x7f020082;
+        public static final int ic_drawer=0x7f020083;
+        public static final int ic_launcher=0x7f020084;
+        public static final int pic0=0x7f020085;
+        public static final int pic1=0x7f020086;
+        public static final int splash_android=0x7f020087;
+        public static final int splash_back=0x7f020088;
+        public static final int splash_icon=0x7f020089;
     }
     public static final class id {
         public static final int action_bar=0x7f05001e;
@@ -1402,10 +1403,10 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f050025;
         public static final int action_bar_title=0x7f050024;
         public static final int action_context_bar=0x7f05001f;
-        public static final int action_example=0x7f050065;
         public static final int action_menu_divider=0x7f050018;
         public static final int action_menu_presenter=0x7f050019;
         public static final int action_mode_close_button=0x7f050026;
+        public static final int action_search=0x7f050065;
         public static final int action_settings=0x7f050064;
         public static final int activity_chooser_view_content=0x7f050027;
         public static final int always=0x7f05000d;
@@ -1618,8 +1619,7 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f080025;
-        public static final int action_example=0x7f08002d;
-        public static final int action_settings=0x7f08002e;
+        public static final int action_settings=0x7f08002f;
         public static final int app_name=0x7f080027;
         public static final int com_facebook_choose_friends=0x7f08000f;
         public static final int com_facebook_dialogloginactivity_ok_button=0x7f080000;
@@ -1647,8 +1647,12 @@ containing a value of this type.
         public static final int com_facebook_usersettingsfragment_log_in_button=0x7f080008;
         public static final int com_facebook_usersettingsfragment_logged_in=0x7f080009;
         public static final int com_facebook_usersettingsfragment_not_logged_in=0x7f08000a;
+        public static final int loading=0x7f080031;
+        public static final int main_ip=0x7f08002e;
         public static final int navigation_drawer_close=0x7f08002c;
         public static final int navigation_drawer_open=0x7f08002b;
+        public static final int noNet=0x7f080030;
+        public static final int search_title=0x7f08002d;
         public static final int title_section1=0x7f080028;
         public static final int title_section2=0x7f080029;
         public static final int title_section3=0x7f08002a;

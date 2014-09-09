@@ -1,9 +1,7 @@
 package mn.ismartdev.mcar.fragment;
 
 import mn.ismartdev.mcar.R;
-import mn.ismartdev.mcar.SellerAc;
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -59,7 +57,7 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
-    private String [] navigationMenus={"Үндсэн","Дугуйлсан машин","Түгээх","Холбоо барих"};
+    public static String [] navigationMenus={"Үндсэн","Дугуйлсан машин","Түгээх","Холбоо барих"};
     public NavigationDrawerFragment() {
     }
 
@@ -245,11 +243,7 @@ public class NavigationDrawerFragment extends Fragment {
             return true;
         }
 
-        if (item.getItemId() == R.id.action_example) {
-        	startActivity(new Intent(getActivity(),SellerAc.class));
-//            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }

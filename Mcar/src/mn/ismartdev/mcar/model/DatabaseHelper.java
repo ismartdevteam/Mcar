@@ -66,7 +66,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	}
 
 	// delete all company
-	public void deleteUser() {
+	public void deleteCompany() {
 		try {
 			TableUtils.clearTable(connectionSource, Company.class);
 			TableUtils.clearTable(connectionSource, CompanyType.class);
