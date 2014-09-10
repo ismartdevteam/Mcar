@@ -3,7 +3,6 @@ package mn.ismartdev.mcar;
 import java.util.ArrayList;
 
 import mn.ismartdev.mcar.fragment.ScrollTabHolderFragment;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;

@@ -19,7 +19,6 @@ package com.astuetz;
 import java.util.Locale;
 
 import mn.ismartdev.mcar.R;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;

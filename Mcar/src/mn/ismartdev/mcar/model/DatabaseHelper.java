@@ -16,6 +16,11 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	private static int databaseVersion = 1;
 	Dao<Company, Integer> comDao = null;
 	Dao<CompanyType, Integer> comTypeDao = null;
+	Dao<Car, Integer> carDao = null;
+	Dao<CarBody, Integer> bodyDao = null;
+	Dao<CarCategory, Integer> carCatDao = null;
+	Dao<CarMark, Integer> markDao = null;
+	Dao<CarModel, Integer> modelDao = null;
 
 	public DatabaseHelper(Context context) {
 		super(context, databaseName, null, databaseVersion);
@@ -30,6 +35,12 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.createTableIfNotExists(connectionSource, Company.class);
 			TableUtils.createTableIfNotExists(connectionSource,
 					CompanyType.class);
+			TableUtils.createTableIfNotExists(connectionSource, Car.class);
+			TableUtils.createTableIfNotExists(connectionSource, CarBody.class);
+			TableUtils.createTableIfNotExists(connectionSource,
+					CarCategory.class);
+			TableUtils.createTableIfNotExists(connectionSource, CarMark.class);
+			TableUtils.createTableIfNotExists(connectionSource, CarModel.class);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,6 +57,11 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		try {
 			TableUtils.createTable(connectionSource, Company.class);
 			TableUtils.createTable(connectionSource, CompanyType.class);
+			TableUtils.createTable(connectionSource, Car.class);
+			TableUtils.createTable(connectionSource, CarBody.class);
+			TableUtils.createTable(connectionSource, CarCategory.class);
+			TableUtils.createTable(connectionSource, CarMark.class);
+			TableUtils.createTable(connectionSource, CarModel.class);
 			onCreate(arg0);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -65,6 +81,36 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		return comTypeDao;
 	}
 
+	public Dao<Car, Integer> getCarDao() throws SQLException {
+		if (carDao == null)
+			carDao = getDao(Car.class);
+		return carDao;
+	}
+
+	public Dao<CarBody, Integer> getBodyDao() throws SQLException {
+		if (bodyDao == null)
+			bodyDao = getDao(CarBody.class);
+		return bodyDao;
+	}
+
+	public Dao<CarCategory, Integer> getCarCatDao() throws SQLException {
+		if (carCatDao == null)
+			carCatDao = getDao(CarCategory.class);
+		return carCatDao;
+	}
+
+	public Dao<CarMark, Integer> getMarkDao() throws SQLException {
+		if (markDao == null)
+			markDao = getDao(CarMark.class);
+		return markDao;
+	}
+
+	public Dao<CarModel, Integer> getModelDao() throws SQLException {
+		if (modelDao == null)
+			modelDao = getDao(CarModel.class);
+		return modelDao;
+	}
+
 	// delete all company
 	public void deleteCompany() {
 		try {
@@ -76,11 +122,29 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		}
 	}
 
+	public void deleteCars() {
+		try {
+			TableUtils.clearTable(connectionSource, Car.class);
+			TableUtils.clearTable(connectionSource, CarBody.class);
+			TableUtils.clearTable(connectionSource, CarCategory.class);
+			TableUtils.clearTable(connectionSource, CarMark.class);
+			TableUtils.clearTable(connectionSource, CarModel.class);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	@Override
 	public void close() {
 		// TODO Auto-generated method stub
 		comDao = null;
 		comTypeDao = null;
+		carDao = null;
+		bodyDao = null;
+		carCatDao = null;
+		markDao = null;
+		modelDao = null;
 		super.close();
 	}
 

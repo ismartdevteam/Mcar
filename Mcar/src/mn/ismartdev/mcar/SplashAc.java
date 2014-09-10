@@ -1,9 +1,12 @@
 package mn.ismartdev.mcar;
 
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
 
+import mn.ismartdev.mcar.model.Car;
+import mn.ismartdev.mcar.model.CarBody;
+import mn.ismartdev.mcar.model.CarCategory;
+import mn.ismartdev.mcar.model.CarMark;
+import mn.ismartdev.mcar.model.CarModel;
 import mn.ismartdev.mcar.model.Company;
 import mn.ismartdev.mcar.model.CompanyType;
 import mn.ismartdev.mcar.model.DatabaseHelper;
@@ -17,9 +20,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.Request.Method;
@@ -42,17 +43,20 @@ public class SplashAc extends Activity {
 		mRequestQueue = Volley.newRequestQueue(this);
 		if (Utils.isNetworkAvailable(this)) {
 			getCompanies();
-		} else{
+			getCar();
+		} else {
 			Toast.makeText(this, getString(R.string.noNet), Toast.LENGTH_SHORT)
 					.show();
 			run();
 		}
-	
+
 	}
-public void run(){
-	 finish();
-	 startActivity(new Intent(SplashAc.this, MainActivity.class));
-}
+
+	public void run() {
+		finish();
+		startActivity(new Intent(SplashAc.this, MainActivity.class));
+	}
+
 	private void getCompanies() {
 		CustomRequest logRequest = new CustomRequest(Method.POST,
 				this.getString(R.string.main_ip) + "company.php", null,
@@ -65,16 +69,16 @@ public void run(){
 						try {
 							if (response != null
 									&& response.getInt("error_number") == 1) {
-								Log.i("company", response.toString());
 								JSONArray data = response.getJSONArray("data");
 								makeCompany(data);
-								run();
+
 							}
 						} catch (JSONException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 
 						}
+						run();
 					}
 				}, new Response.ErrorListener() {
 
@@ -82,13 +86,124 @@ public void run(){
 					public void onErrorResponse(VolleyError error) {
 						// TODO Auto-generated method stub
 						Log.i("error", error.getMessage() + "");
-
+						run();
 					}
 
 				}) {
 
 		};
 		mRequestQueue.add(logRequest);
+	}
+
+	private void getCar() {
+		CustomRequest logRequest = new CustomRequest(Method.POST,
+				this.getString(R.string.main_ip) + "cars.php", null,
+				new Listener<JSONObject>() {
+
+					@Override
+					public void onResponse(JSONObject response) {
+						// TODO Auto-generated method stub
+
+						try {
+							if (response != null
+									&& response.getInt("error_number") == 1) {
+								JSONArray data = response.getJSONArray("data");
+								makeCar(data);
+
+							}
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+
+						}
+						run();
+					}
+				}, new Response.ErrorListener() {
+
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						// TODO Auto-generated method stub
+						Log.i("error", error.getMessage() + "");
+						run();
+					}
+
+				}) {
+
+		};
+		mRequestQueue.add(logRequest);
+	}
+
+	private void makeCar(JSONArray data) throws JSONException {
+		if (data.length() > 0) {
+			helper.deleteCars();
+			for (int i = 0; i < data.length(); i++) {
+				JSONObject obj = data.getJSONObject(i);
+				Car car = new Car();
+				car.car_id = obj.optInt("id");
+				car.seller_id = obj.optInt("seller_id");
+				car.seller_name = obj.optString("seller_name");
+
+				CarMark mark = new CarMark();
+				mark.id = obj.optInt("mark_id");
+				mark.name = obj.optString("mark_name");
+
+				CarModel mod = new CarModel();
+				mod.id = obj.optInt("model_id");
+				mod.name = obj.optString("model");
+				mod.mark_id = mark.id;
+				car.model_id = mod.id;
+
+				CarBody body = new CarBody();
+				body.id = obj.optInt("body_id");
+				body.name = obj.optString("body_name");
+				car.body_id = body.id;
+
+				CarCategory cat = new CarCategory();
+				cat.id = obj.optInt("category_id");
+				cat.name = obj.optString("category_name");
+				car.category_id = cat.id;
+
+				car.modification = obj.optString("modification");
+				car.status = obj.optInt("status");
+				car.transmission = obj.optInt("transmission");
+				car.distance = obj.optInt("distance");
+				car.price = obj.optDouble("price");
+				car.fuel = obj.optInt("fuel");
+				car.view_count = obj.optInt("viewcount");
+				car.order = obj.optInt("order");
+
+				car.drivetrain = obj.optString("drivetrain");
+				car.engine = obj.optString("engine");
+
+				car.created_date = obj.optString("created_date");
+				car.image_url = obj.optString("image_url");
+
+				try {
+					helper.getCarDao().create(car);
+					helper.getMarkDao().create(mark);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try {
+					helper.getModelDao().create(mod);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+				}
+				try {
+					helper.getBodyDao().create(body);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+				}
+				try {
+					helper.getCarCatDao().create(cat);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+				}
+
+			}
+		}
+
 	}
 
 	private void makeCompany(JSONArray data) throws JSONException {
@@ -123,13 +238,12 @@ public void run(){
 				try {
 					helper.getComTypeDao().create(companyType);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-//					e.printStackTrace();
+
 				}
 
 			}
 
 		}
-	
+
 	}
 }
