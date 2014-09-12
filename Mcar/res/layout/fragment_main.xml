@@ -7,12 +7,11 @@
 
     <org.lucasr.twowayview.TwoWayView
         android:id="@+id/company_list"
-        style="@style/TwoWayViewBase"
+        style="@style/TwoWayViewBaseHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        
+        android:layout_height="360dp"
         android:layout_weight="1"
-        android:background="@android:color/white"
+        android:background="@color/titlestrip_background_color"
         app:layoutManager="StaggeredGridLayoutManager"
         app:numColumns="2"
         app:numRows="2" />
@@ -25,7 +24,7 @@
         <com.astuetz.PagerSlidingTabStrip
             android:id="@+id/carTab"
             android:layout_width="match_parent"
-            android:layout_height="48dip"
+            android:layout_height="38dip"
             android:layout_gravity="bottom"
             android:background="@color/mainColor" />
 

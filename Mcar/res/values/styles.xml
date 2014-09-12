@@ -38,10 +38,14 @@
         <item name="background">@color/mainColor</item>
     </style>
 
-    <style name="TwoWayViewBase">
+    <style name="TwoWayViewBaseHorizontal">
         <item name="android:background">#999999</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:scrollbars">horizontal</item>
+        <item name="android:scrollbars">none</item>
     </style>
-
+    <style name="TwoWayViewBaseVertical">
+        <item name="android:background">#999999</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:scrollbars">vertical</item>
+    </style>
 </resources>

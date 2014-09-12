@@ -19,10 +19,9 @@ package mn.ismartdev.mcar.adapter;
 import java.util.List;
 
 import mn.ismartdev.mcar.R;
-import mn.ismartdev.mcar.model.Company;
+import mn.ismartdev.mcar.model.Car;
+import mn.ismartdev.mcar.model.DatabaseHelper;
 
-import org.lucasr.twowayview.TwoWayLayoutManager;
-import org.lucasr.twowayview.TwoWayView;
 import org.lucasr.twowayview.widget.StaggeredGridLayoutManager;
 
 import android.content.Context;
@@ -39,23 +38,24 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
 
-public class CompanyAdapter extends
-		RecyclerView.Adapter<CompanyAdapter.SimpleViewHolder> {
+public class CarAdapter extends
+		RecyclerView.Adapter<CarAdapter.SimpleViewHolder> {
 
 	Context mContext;
-	private final List<Company> mItems;
+	private final List<Car> mItems;
 	private ImageLoader mImageLoader;
 	private RequestQueue mRequestQueue;
-
+	 DatabaseHelper helper;
 	public class SimpleViewHolder extends RecyclerView.ViewHolder {
 		public final NetworkImageView image;
 		public final TextView name;
-
+		
 		public SimpleViewHolder(View view) {
 			super(view);
-			image = (NetworkImageView) view.findViewById(R.id.com_item_image);
-			name = (TextView) view.findViewById(R.id.com_item_name);
+			name=(TextView)view.findViewById(R.id.car_item_name);
+			image = (NetworkImageView) view.findViewById(R.id.car_item_image);
 			mRequestQueue = Volley.newRequestQueue(mContext);
+			helper=new DatabaseHelper(mContext);
 			mImageLoader = new ImageLoader(mRequestQueue,
 					new ImageLoader.ImageCache() {
 						private final LruCache<String, Bitmap> mCache = new LruCache<String, Bitmap>(
@@ -72,7 +72,8 @@ public class CompanyAdapter extends
 		}
 	}
 
-	public CompanyAdapter(Context context, List<Company> data) {
+	public CarAdapter(Context context,
+			List<Car> data) {
 		mContext = context;
 		mItems = data;
 
@@ -92,48 +93,50 @@ public class CompanyAdapter extends
 	@Override
 	public SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		final View view = LayoutInflater.from(mContext).inflate(
-				R.layout.company_item, parent, false);
+				R.layout.car_item, parent, false);
 		return new SimpleViewHolder(view);
 	}
 
 	@Override
 	public void onBindViewHolder(SimpleViewHolder holder, int position) {
-		Company com = mItems.get(position);
-		holder.image.setImageUrl(com.logo, mImageLoader);
-		holder.name.setText(com.name+"");
-
+		Car car = mItems.get(position);
+		
+		holder.image.setImageUrl(car.image_url, mImageLoader);
+		holder.name.setText(car.modification+"");
+//		boolean isVertical = (mRecyclerView.getOrientation() == TwoWayLayoutManager.Orientation.VERTICAL);
 		final View itemView = holder.itemView;
 
-		final int itemId = com.order;
+//		final int itemId = com.car;
 
-		final int dimenId;
-		if (itemId == 2) {
-			dimenId = R.dimen.staggered_child_medium;
-		} else if (itemId == 3) {
-			dimenId = R.dimen.staggered_child_large;
-		} else if (itemId == 4) {
-			dimenId = R.dimen.staggered_child_xlarge;
-		} else {
-			dimenId = R.dimen.staggered_child_small;
-		}
-
-		final int span;
-		if (itemId == 4 || itemId==3) {
-			span = 2;
-		} else {
-			span = 1;
-		}
-
+		final int dimenId= R.dimen.com_item_dim;
+////		if (itemId == 2) {
+////			dimenId = R.dimen.staggered_child_medium;
+////		} else if (itemId == 3) {
+////			dimenId = R.dimen.staggered_child_large;
+////		} else if (itemId == 4) {
+////			dimenId 
+////		} else {
+////			dimenId = R.dimen.staggered_child_small;
+////		}
+//
+		final int span=2;
+////		if (itemId == 2) {
+////			span = 2;
+////		} else {
+////			span = 1;
+////		}
+//
 		final int size = mContext.getResources().getDimensionPixelSize(dimenId);
 
 		final StaggeredGridLayoutManager.LayoutParams lp = (StaggeredGridLayoutManager.LayoutParams) itemView
 				.getLayoutParams();
 
-		lp.span = span;
-		lp.width = size;
-
-		itemView.setLayoutParams(lp);
-
+		
+			lp.span = span;
+			lp.height =size;
+			lp.width=StaggeredGridLayoutManager.LayoutParams.MATCH_PARENT;
+			itemView.setLayoutParams(lp);
+		
 	}
 
 	@Override
