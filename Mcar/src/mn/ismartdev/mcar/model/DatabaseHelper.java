@@ -21,7 +21,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	Dao<CarCategory, Integer> carCatDao = null;
 	Dao<CarMark, Integer> markDao = null;
 	Dao<CarModel, Integer> modelDao = null;
-
+	Dao<Ad, Integer> adDao = null;
+	Dao<AdCat, Integer> adCatDao = null;
 	public DatabaseHelper(Context context) {
 		super(context, databaseName, null, databaseVersion);
 		// TODO Auto-generated constructor stub
@@ -41,6 +42,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 					CarCategory.class);
 			TableUtils.createTableIfNotExists(connectionSource, CarMark.class);
 			TableUtils.createTableIfNotExists(connectionSource, CarModel.class);
+			TableUtils.createTableIfNotExists(connectionSource, Ad.class);
+			TableUtils.createTableIfNotExists(connectionSource, AdCat.class);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,6 +65,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.createTable(connectionSource, CarCategory.class);
 			TableUtils.createTable(connectionSource, CarMark.class);
 			TableUtils.createTable(connectionSource, CarModel.class);
+			TableUtils.createTable(connectionSource, Ad.class);
+			TableUtils.createTable(connectionSource, AdCat.class);
 			onCreate(arg0);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -73,6 +78,17 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		if (comDao == null)
 			comDao = getDao(Company.class);
 		return comDao;
+	}
+	public Dao<Ad, Integer> getAdDao() throws SQLException {
+		if (adDao == null)
+			adDao = getDao(Ad.class);
+		return adDao;
+	}
+
+	public Dao<AdCat, Integer> getadCatDao() throws SQLException {
+		if (adCatDao == null)
+			adCatDao = getDao(AdCat.class);
+		return adCatDao;
 	}
 
 	public Dao<CompanyType, Integer> getComTypeDao() throws SQLException {
@@ -121,7 +137,15 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			e.printStackTrace();
 		}
 	}
-
+	public void deleteAd() {
+		try {
+			TableUtils.clearTable(connectionSource, Ad.class);
+			TableUtils.clearTable(connectionSource, AdCat.class);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public void deleteCars() {
 		try {
 			TableUtils.clearTable(connectionSource, Car.class);

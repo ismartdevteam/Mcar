@@ -19,6 +19,7 @@ public int category_id;
 public int body_id;
 @DatabaseField
 public int model_id;
+
 @DatabaseField
 public String modification;
 @DatabaseField
@@ -29,6 +30,8 @@ public int status;
 public int transmission;
 @DatabaseField
 public int distance;
+@DatabaseField
+public int distance_type;
 @DatabaseField
 public String engine;
 @DatabaseField
@@ -42,5 +45,7 @@ public String created_date;
 @DatabaseField
 public String image_url;
 @DatabaseField
-public double price;
+public int price;
+@DatabaseField
+public String year;
 }

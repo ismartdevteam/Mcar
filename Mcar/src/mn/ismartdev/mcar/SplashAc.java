@@ -64,7 +64,6 @@ public class SplashAc extends Activity {
 
 					@Override
 					public void onResponse(JSONObject response) {
-						// TODO Auto-generated method stub
 
 						try {
 							if (response != null
@@ -78,7 +77,7 @@ public class SplashAc extends Activity {
 							e.printStackTrace();
 
 						}
-						run();
+					
 					}
 				}, new Response.ErrorListener() {
 
@@ -86,7 +85,7 @@ public class SplashAc extends Activity {
 					public void onErrorResponse(VolleyError error) {
 						// TODO Auto-generated method stub
 						Log.i("error", error.getMessage() + "");
-						run();
+					
 					}
 
 				}) {
@@ -142,7 +141,8 @@ public class SplashAc extends Activity {
 				car.car_id = obj.optInt("id");
 				car.seller_id = obj.optInt("seller_id");
 				car.seller_name = obj.optString("seller_name");
-
+				car.year = obj.optString("year");
+				car.distance_type = obj.optInt("distance_type");
 				CarMark mark = new CarMark();
 				mark.id = obj.optInt("mark_id");
 				mark.name = obj.optString("mark_name");
@@ -167,7 +167,7 @@ public class SplashAc extends Activity {
 				car.status = obj.optInt("status");
 				car.transmission = obj.optInt("transmission");
 				car.distance = obj.optInt("distance");
-				car.price = obj.optDouble("price");
+				car.price = obj.optInt("price");
 				car.fuel = obj.optInt("fuel");
 				car.view_count = obj.optInt("viewcount");
 				car.order = obj.optInt("order");

@@ -95,7 +95,7 @@ public class MainActivity extends ActionBarActivity implements
 			return true;
 		}
 		if (id == R.id.action_search) {
-			startActivity(new Intent(MainActivity.this, SellerAc.class));
+			startActivity(new Intent(MainActivity.this, AdAc.class));
 			// Toast.makeText(getActivity(), "Example action.",
 			// Toast.LENGTH_SHORT).show();
 			return true;

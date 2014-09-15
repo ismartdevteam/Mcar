@@ -30,7 +30,7 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="mn.ismartdev.mcar.SellerAc"
+            android:name="mn.ismartdev.mcar.AdAc"
             android:configChanges="orientation|screenSize"
             android:label="@string/app_name"
             android:theme="@style/AppTheme" >

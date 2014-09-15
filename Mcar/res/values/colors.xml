@@ -9,5 +9,12 @@
     <color name="item_default_color">#EEEEEE</color>
     <color name="item_pressed_color">#CCCCCC</color>
     <color name="item_activated_color">#77CEEE</color>
-  <color name="title_trans">#80232324</color>
+    <color name="car_status_mglnew_trans">#80195C88</color>
+    <color name="car_status_old_trans">#80000000</color>
+    <color name="car_status_new_trans">#80c0063f</color>
+    <color name="title_trans">#80232324</color>
+    <color name="car_price_color">#16AA16</color>
+    <color name="car_distance_color">#D41C1C</color>
+    <color name="car_title_color">#195C88</color>
+
 </resources>
