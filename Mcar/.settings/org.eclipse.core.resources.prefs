@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/mn/ismartdev/mcar/AdAc.java=UTF-8
+encoding//src/mn/ismartdev/mcar/adapter/AdAdapter.java=UTF-8
 encoding//src/mn/ismartdev/mcar/adapter/CarAdapter.java=UTF-8
 encoding//src/mn/ismartdev/mcar/fragment/NavigationDrawerFragment.java=UTF-8
 encoding//src/mn/ismartdev/mcar/model/EnumCar.java=UTF-8

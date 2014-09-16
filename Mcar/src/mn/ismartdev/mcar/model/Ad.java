@@ -18,7 +18,7 @@ public String phone;
 @DatabaseField
 public String date;
 @DatabaseField
-public String category_id;
+public int category_id;
 @DatabaseField
 public String images;
 @DatabaseField

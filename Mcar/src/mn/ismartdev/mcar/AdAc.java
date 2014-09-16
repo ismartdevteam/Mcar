@@ -5,6 +5,7 @@ import java.util.List;
 
 import mn.ismartdev.mcar.fragment.ScrollTabHolder;
 import mn.ismartdev.mcar.fragment.ScrollTabHolderFragment;
+import mn.ismartdev.mcar.model.Ad;
 import mn.ismartdev.mcar.model.AdCat;
 import mn.ismartdev.mcar.model.DatabaseHelper;
 import mn.ismartdev.mcar.util.CustomRequest;
@@ -75,10 +76,7 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 
 	private ActionBar actionBar;
 
-	private void setHeaderAdapter(String... url) {
-		mHeaderPicture.setResourceURL(url);
 
-	}
 
 	private RequestQueue mRequestQueue;
 	private DatabaseHelper helper;
@@ -110,9 +108,8 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 				e.printStackTrace();
 			}
 		}
-		
-		
-		// mHeaderPicture.setResourceIds(R.drawable.pic0, R.drawable.pic1);
+		mHeaderPicture = (KenBurnsSupportView) findViewById(R.id.header_picture);
+		 mHeaderPicture.setResourceIds(R.drawable.pic0, R.drawable.pic1);
 		mHeaderLogo = (ImageView) findViewById(R.id.header_logo);
 		mHeader = findViewById(R.id.header);
 
@@ -120,7 +117,6 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setOffscreenPageLimit(4);
 
-	
 		mSpannableString = new SpannableString("Авто Зар");
 		mAlphaForegroundColorSpan = new AlphaForegroundColorSpan(0xffffffff);
 
@@ -128,17 +124,20 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 
 		actionBar = getSupportActionBar();
 		actionBar.setBackgroundDrawable(null);
-//		mHeaderPicture = (KenBurnsSupportView) findViewById(R.id.header_picture);
+		// mHeaderPicture = (KenBurnsSupportView)
+		// findViewById(R.id.header_picture);
 	}
-private void setAdapters(){
-	mPagerAdapter = new PagerAdapter(getSupportFragmentManager());
-	mPagerAdapter.setTabHolderScrollingContent(this);
 
-	mViewPager.setAdapter(mPagerAdapter);
+	private void setAdapters() {
+		mPagerAdapter = new PagerAdapter(getSupportFragmentManager());
+		mPagerAdapter.setTabHolderScrollingContent(this);
 
-	mPagerSlidingTabStrip.setViewPager(mViewPager);
-	mPagerSlidingTabStrip.setOnPageChangeListener(this);
-}
+		mViewPager.setAdapter(mPagerAdapter);
+
+		mPagerSlidingTabStrip.setViewPager(mViewPager);
+		mPagerSlidingTabStrip.setOnPageChangeListener(this);
+	}
+
 	private void makeAdsCat(JSONArray data) throws JSONException, SQLException {
 		// TODO Auto-generated method stub
 		if (data.length() > 0) {
@@ -151,7 +150,7 @@ private void setAdapters(){
 				helper.getadCatDao().create(cat);
 			}
 		}
-		catData=helper.getadCatDao().queryForAll();
+		catData = helper.getadCatDao().queryForAll();
 		setAdapters();
 	}
 
@@ -216,6 +215,8 @@ private void setAdapters(){
 
 		currentHolder.adjustScroll((int) (mHeader.getHeight() + ViewHelper
 				.getTranslationY(mHeader)));
+	
+
 	}
 
 	@Override
@@ -350,7 +351,7 @@ private void setAdapters(){
 		@Override
 		public Fragment getItem(int position) {
 			ScrollTabHolderFragment fragment = (ScrollTabHolderFragment) SampleListFragment
-					.newInstance(position,catData.get(position).id);
+					.newInstance(position, catData.get(position).id);
 
 			mScrollTabHolders.put(position, fragment);
 			if (mListener != null) {
