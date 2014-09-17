@@ -25,7 +25,7 @@ public class MainActivity extends ActionBarActivity implements
 	 * {@link #restoreActionBar()}.
 	 */
 	private CharSequence mTitle;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,8 +48,11 @@ public class MainActivity extends ActionBarActivity implements
 		case 0:
 			fragmentManager.beginTransaction()
 					.replace(R.id.container, new HomeFrag()).commit();
+			onSectionAttached(position);
 			break;
-
+		case 1:
+			startActivity(new Intent(MainActivity.this, AdAc.class));
+			break;
 		default:
 			break;
 		}
@@ -57,12 +60,12 @@ public class MainActivity extends ActionBarActivity implements
 		// .beginTransaction()
 		// .replace(R.id.container,
 		// PlaceholderFragment.newInstance(position + 1)).commit();
-		onSectionAttached(position);
+
 		restoreActionBar();
 	}
 
 	public void onSectionAttached(int number) {
-		mTitle=NavigationDrawerFragment.navigationMenus[number];
+		mTitle = NavigationDrawerFragment.navigationMenus[number];
 	}
 
 	public void restoreActionBar() {

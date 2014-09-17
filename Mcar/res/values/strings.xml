@@ -8,6 +8,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="search_title">Хайх</string>
+    <string name="ad_add_title">Зах нэмэх</string>
     <string name="main_ip">http://192.168.56.1/mcar/server/mobile/</string>
     <string name="action_settings">Тохиргоо</string>
     <string name="noNet">Интернет холболтоо шалгана уу...</string>

@@ -23,24 +23,43 @@ import mn.ismartdev.mcar.R;
 import mn.ismartdev.mcar.model.Ad;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.support.v4.util.LruCache;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.Volley;
 
 public class AdAdapter extends ArrayAdapter<Ad> {
 	Context mContext;
 	private ImageLoader mImageLoader;
 	private RequestQueue mRequestQueue;
-
+	private int					lastPosition	= -1;
 	public AdAdapter(Context context, List<Ad> objects) {
 		super(context, 0, 0, objects);
 		this.mContext = context;
 		// TODO Auto-generated constructor stub
+		mRequestQueue = Volley.newRequestQueue(mContext);
+		mImageLoader = new ImageLoader(mRequestQueue,
+				new ImageLoader.ImageCache() {
+					private final LruCache<String, Bitmap> mCache = new LruCache<String, Bitmap>(
+							10);
 
+					public void putBitmap(String url, Bitmap bitmap) {
+						mCache.put(url, bitmap);
+					}
+
+					public Bitmap getBitmap(String url) {
+						return mCache.get(url);
+					}
+				});
 	}
 
 	@Override
@@ -50,18 +69,34 @@ public class AdAdapter extends ArrayAdapter<Ad> {
 		Holder hol = null;
 		if (v == null) {
 			v = ((Activity) mContext).getLayoutInflater().inflate(
-					R.layout.ad_item, null);
+					R.layout.ad_item, parent, false);
 			hol = new Holder();
-			hol.title = (TextView) v.findViewById(R.id.test);
+			hol.title = (TextView) v.findViewById(R.id.ad_item_title);
+			hol.desc = (TextView) v.findViewById(R.id.ad_item_desc);
+			hol.price = (TextView) v.findViewById(R.id.ad_item_price);
+			hol.image = (NetworkImageView) v.findViewById(R.id.ad_item_image);
 			v.setTag(hol);
 		} else
 			hol = (Holder) v.getTag();
-		hol.title.setText(ad.title);
+		hol.title.setText(ad.title + "");
+		hol.desc.setText(ad.description + "");
+		hol.price.setText(numberToFormat(ad.price) + "₮");
+		if(ad.images.length()>0)
+		hol.image.setImageUrl(ad.images, mImageLoader);
+		Animation animation = AnimationUtils.loadAnimation(
+				getContext(),
+				(position > lastPosition) ? R.anim.up_from_bottom
+						: R.anim.down_from_top);
+		v.startAnimation(animation);
+		lastPosition = position;
 		return v;
 	}
 
 	class Holder {
+		NetworkImageView image;
 		TextView title;
+		TextView desc;
+		TextView price;
 	}
 
 	private String numberToFormat(int price) {

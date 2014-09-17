@@ -5,7 +5,6 @@ import java.util.List;
 
 import mn.ismartdev.mcar.fragment.ScrollTabHolder;
 import mn.ismartdev.mcar.fragment.ScrollTabHolderFragment;
-import mn.ismartdev.mcar.model.Ad;
 import mn.ismartdev.mcar.model.AdCat;
 import mn.ismartdev.mcar.model.DatabaseHelper;
 import mn.ismartdev.mcar.util.CustomRequest;
@@ -65,7 +64,7 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 	private int mMinHeaderHeight;
 	private int mHeaderHeight;
 	private int mMinHeaderTranslation;
-	private ImageView mHeaderLogo;
+//	private ImageView mHeaderLogo;
 
 	private RectF mRect1 = new RectF();
 	private RectF mRect2 = new RectF();
@@ -109,8 +108,8 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 			}
 		}
 		mHeaderPicture = (KenBurnsSupportView) findViewById(R.id.header_picture);
-		 mHeaderPicture.setResourceIds(R.drawable.pic0, R.drawable.pic1);
-		mHeaderLogo = (ImageView) findViewById(R.id.header_logo);
+		 mHeaderPicture.setResourceIds(R.drawable.ad1, R.drawable.ad2);
+//		mHeaderLogo = (ImageView) findViewById(R.id.header_logo);
 		mHeader = findViewById(R.id.header);
 
 		mPagerSlidingTabStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
@@ -228,8 +227,8 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 					Math.max(-scrollY, mMinHeaderTranslation));
 			float ratio = clamp(ViewHelper.getTranslationY(mHeader)
 					/ mMinHeaderTranslation, 0.0f, 1.0f);
-			interpolate(mHeaderLogo, getActionBarIconView(),
-					sSmoothInterpolator.getInterpolation(ratio));
+//			interpolate(mHeaderLogo, getActionBarIconView(),
+//					sSmoothInterpolator.getInterpolation(ratio));
 			setTitleAlpha(clamp(5.0F * ratio - 4.0F, 0.0F, 1.0F));
 		}
 	}
@@ -370,7 +369,7 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.ad_menu, menu);
 
 		return super.onCreateOptionsMenu(menu);
 	}

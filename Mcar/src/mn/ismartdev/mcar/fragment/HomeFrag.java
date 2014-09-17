@@ -2,6 +2,8 @@ package mn.ismartdev.mcar.fragment;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import mn.ismartdev.mcar.R;
 import mn.ismartdev.mcar.adapter.CarAdapter;
@@ -12,9 +14,7 @@ import mn.ismartdev.mcar.model.Company;
 import mn.ismartdev.mcar.model.DatabaseHelper;
 
 import org.lucasr.twowayview.TwoWayView;
-import org.lucasr.twowayview.widget.DividerItemDecoration;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -35,6 +35,94 @@ public class HomeFrag extends Fragment {
 	private List<CarCategory> catData;
 	private ViewPager carPager;
 	private PagerSlidingTabStrip tabs;
+	// scrool company
+	private int verticalScrollMax;
+	private Timer scrollTimer = null;
+	private TimerTask clickSchedule;
+	private TimerTask scrollerSchedule;
+	private TimerTask faceAnimationSchedule;
+	private int scrollPos = 0;
+	private Timer clickTimer = null;
+	private Timer faceTimer = null;
+	private int minScroll = 1;
+	private int maxScroll = 4;
+	private int currentScroll = 1;
+	private boolean isScrolling = false;
+
+	public void getScrollMaxAmount() {
+		int actualWidth = (companyList.getMeasuredWidth() - (256 * 3));
+		verticalScrollMax = actualWidth;
+	}
+
+	public void startAutoScrolling() {
+		if (scrollTimer == null) {
+			scrollTimer = new Timer();
+			final Runnable Timer_Tick = new Runnable() {
+				public void run() {
+					moveScrollView();
+				}
+			};
+
+			if (scrollerSchedule != null) {
+				scrollerSchedule.cancel();
+				scrollerSchedule = null;
+			}
+			scrollerSchedule = new TimerTask() {
+				@Override
+				public void run() {
+					getActivity().runOnUiThread(Timer_Tick);
+				}
+			};
+
+			scrollTimer.schedule(scrollerSchedule, 60, 60);
+		}
+	}
+
+	public void moveScrollView() {
+		scrollPos = (int) (companyList.getScrollX() + currentScroll);
+		if (scrollPos >= verticalScrollMax) {
+			scrollPos = 0;
+		}
+		companyList.scrollBy(currentScroll, 0);
+	}
+
+	public void stopAutoScrolling() {
+		if (scrollTimer != null) {
+			scrollTimer.cancel();
+			scrollTimer = null;
+		}
+	}
+
+	public void onDestroy() {
+		clearTimerTaks(clickSchedule);
+		clearTimerTaks(scrollerSchedule);
+		clearTimerTaks(faceAnimationSchedule);
+		clearTimers(scrollTimer);
+		clearTimers(clickTimer);
+		clearTimers(faceTimer);
+
+		clickSchedule = null;
+		scrollerSchedule = null;
+		faceAnimationSchedule = null;
+		scrollTimer = null;
+		clickTimer = null;
+		faceTimer = null;
+		super.onDestroy();
+	}
+
+	private void clearTimers(Timer timer) {
+		if (timer != null) {
+			timer.cancel();
+			timer = null;
+		}
+	}
+
+	private void clearTimerTaks(TimerTask timerTask) {
+		if (timerTask != null) {
+			timerTask.cancel();
+			timerTask = null;
+		}
+	}
 
 	public HomeFrag() {
 	}
@@ -45,11 +133,12 @@ public class HomeFrag extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 		helper = new DatabaseHelper(getActivity());
 		try {
-			comData = helper.getComDao().queryBuilder().orderBy("order", false).orderBy("type_id", true)
-					.query();
+			comData = helper.getComDao().queryBuilder().orderBy("order", false)
+					.orderBy("type_id", true).query();
 			comAdapter = new CompanyAdapter(getActivity(), comData);
 
 			companyList.setAdapter(comAdapter);
+			startAutoScrolling();
 			catData = helper.getCarCatDao().queryForAll();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -70,7 +159,6 @@ public class HomeFrag extends Fragment {
 		companyList.setLongClickable(true);
 		carPager = (ViewPager) rootView.findViewById(R.id.carPager);
 		tabs = (PagerSlidingTabStrip) rootView.findViewById(R.id.carTab);
-
 
 		return rootView;
 	}
@@ -143,9 +231,7 @@ public class HomeFrag extends Fragment {
 			carList = (TwoWayView) v.findViewById(R.id.car_list);
 			carList.setHasFixedSize(true);
 			carList.setLongClickable(true);
-			 final Drawable divider =
-					 getResources().getDrawable(R.drawable.divider);
-			 carList.addItemDecoration(new DividerItemDecoration(divider));
+
 			return v;
 		}
 
@@ -155,7 +241,9 @@ public class HomeFrag extends Fragment {
 
 			helper = new DatabaseHelper(getActivity());
 			try {
-				carsList = helper.getCarDao().queryBuilder().orderBy("order", false).where().eq("category_id", type_id).query();
+				carsList = helper.getCarDao().queryBuilder()
+						.orderBy("order", false).where()
+						.eq("category_id", type_id).query();
 				adapter = new CarAdapter(getActivity(), carsList);
 				carList.setAdapter(adapter);
 			} catch (SQLException e) {

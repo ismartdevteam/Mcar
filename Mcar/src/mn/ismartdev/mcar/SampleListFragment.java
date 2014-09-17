@@ -47,8 +47,9 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 	private View load_footer;
 	private RequestQueue mRequestQueue;
 	private AdAdapter adapter;
-	private boolean isLoad = false;
+	private boolean isFinish = false;
 	private DatabaseHelper helper;
+	private boolean flag_loading = false;
 
 	public static Fragment newInstance(int position, int catId) {
 
@@ -72,11 +73,13 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_list, null);
-		View placeHolderView = inflater.inflate(R.layout.view_header_placeholder, mListView, false);
-		mListView.addHeaderView(placeHolderView);
 		mListView = (ListView) v.findViewById(R.id.listView);
-		load_footer = inflater.inflate(R.layout.list_load_footer, null);
+		View placeHolderView = inflater.inflate(
+				R.layout.view_header_placeholder, mListView, false);
+		mListView.addHeaderView(placeHolderView);
 
+		load_footer = inflater.inflate(R.layout.list_load_footer, null);
+		mListView.addFooterView(load_footer);
 		return v;
 	}
 
@@ -118,23 +121,19 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 		if (mScrollTabHolder != null)
 			mScrollTabHolder.onScroll(view, firstVisibleItem, visibleItemCount,
 					totalItemCount, mPosition);
-
-		if (mListView.getLastVisiblePosition() == index - 1) {
-
-			// Log.i("selecteditem", visibleItemCount + "");
-			if (index % 10 == 0 || !isLoad)
+		if (firstVisibleItem+visibleItemCount == totalItemCount && totalItemCount!=0) {
+			if (flag_loading == false && isFinish == false) {
+				flag_loading = true;
 				getAd(index);
-			// new NextListItems().execute();
+			
+			
 
+			}
 		}
 	}
 
 	private void getAd(final int sIndex) {
-		Log.i("ad index", sIndex + "");
-		isLoad = true;
-		mListView.addFooterView(load_footer);
-
-		CustomRequest logRequest = new CustomRequest(Method.POST,
+		CustomRequest adReq = new CustomRequest(Method.POST,
 				this.getString(R.string.main_ip) + "ad.php", null,
 				new Listener<JSONObject>() {
 
@@ -144,11 +143,18 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 						try {
 							if (response != null
 									&& response.getInt("error_number") == 1) {
-								index = index + response.getInt("number_row");
+								int num_rows = response.getInt("number_row");
+								
+								if (num_rows < 10) {
+									isFinish = true;
+									mListView.removeFooterView(load_footer);
+								}
+								index=index+10;
 								JSONArray data = response.getJSONArray("data");
 								makeAd(data);
 
 							}
+							flag_loading = false;
 						} catch (JSONException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -174,12 +180,13 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 			protected Map<String, String> getParams() {
 				Map<String, String> params = new HashMap<String, String>();
 				params.put("index", sIndex + "");
+				Log.e("index", sIndex + "");
 				params.put("cat_id", cat_id + "");
 				return params;
 			}
 
 		};
-		mRequestQueue.add(logRequest);
+		mRequestQueue.add(adReq);
 	}
 
 	protected void makeAd(JSONArray data) throws JSONException, SQLException {
@@ -187,8 +194,9 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 		if (data.length() > 0) {
 			for (int i = 0; i < data.length(); i++) {
 				Ad ad = new Ad();
+
 				JSONObject obj = data.getJSONObject(i);
-				ad.category_id=obj.optInt("category_id");
+				ad.category_id = obj.optInt("category_id");
 				ad.title = obj.optString("title");
 				ad.description = obj.optString("desc");
 				ad.price = obj.optInt("price");
@@ -198,12 +206,14 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 				ad.order = obj.optInt("order_status");
 				helper.getAdDao().create(ad);
 				mListItems.add(ad);
-		
-			}
-		}
-		adapter.notifyDataSetChanged();
 
-		isLoad = false;
+			}
+		} else {
+			isFinish = true;
+			mListView.removeFooterView(load_footer);
+		}
+
+		adapter.notifyDataSetChanged();
 		mListView.setOnScrollListener(this);
 	}
 

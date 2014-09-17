@@ -3,7 +3,6 @@ package com.flavienlaurent.notboringactionbar;
 import java.util.Random;
 
 import mn.ismartdev.mcar.R;
-
 import android.content.Context;
 import android.os.Handler;
 import android.util.AttributeSet;

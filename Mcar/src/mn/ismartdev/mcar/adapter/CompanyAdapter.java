@@ -21,8 +21,6 @@ import java.util.List;
 import mn.ismartdev.mcar.R;
 import mn.ismartdev.mcar.model.Company;
 
-import org.lucasr.twowayview.TwoWayLayoutManager;
-import org.lucasr.twowayview.TwoWayView;
 import org.lucasr.twowayview.widget.StaggeredGridLayoutManager;
 
 import android.content.Context;

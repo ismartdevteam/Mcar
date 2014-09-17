@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:layout_height="wrap_content"
+    android:background="@drawable/card_view"
     android:orientation="horizontal" >
 
     <RelativeLayout
-        android:layout_width="@dimen/com_item_dim"
-        android:layout_height="@dimen/com_item_dim" >
+        android:layout_width="@dimen/car_item_pad_dim"
+        android:layout_height="@dimen/car_item_pad_dim" >
 
         <com.android.volley.toolbox.NetworkImageView
             android:id="@+id/car_item_image"
-            android:layout_width="@dimen/com_item_dim"
-            android:layout_height="@dimen/com_item_dim"
+            android:layout_width="@dimen/car_item_pad_dim"
+            android:layout_height="@dimen/car_item_pad_dim"
             android:src="@drawable/car_holder" />
 
         <TextView
             android:id="@+id/car_item_status"
-            android:layout_width="@dimen/com_item_dim"
+            android:layout_width="@dimen/car_item_pad_dim"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:gravity="center"
             android:padding="3dp"
-            android:textStyle="bold"
             android:singleLine="true"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/com_item_dim"
+        android:layout_height="@dimen/car_item_pad_dim"
         android:orientation="vertical" >
 
         <TextView
@@ -38,8 +38,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="5dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
             android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/car_title_color" />
 
         <TextView

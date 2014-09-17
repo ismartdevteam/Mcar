@@ -128,6 +128,7 @@ public class CarAdapter extends
 		holder.status.setText(enums.status[car.status]);
 		holder.distance.setText(numberToFormat(car.distance) + " "
 				+ enums.distance[car.distance_type]);
+		if(car.image_url.length()>0)
 		holder.image.setImageUrl(car.image_url, mImageLoader);
 		CarModel mod = null;
 		CarMark mark = null;
@@ -139,14 +140,13 @@ public class CarAdapter extends
 			e.printStackTrace();
 		}
 		holder.price.setText(numberToFormat(car.price) + "₮");
-		holder.name.setText(car.year + "-" + mod.name + " " + mark.name);
+		holder.name.setText(car.year + " " + mod.name + " " + mark.name);
 		// boolean isVertical = (mRecyclerView.getOrientation() ==
 		// TwoWayLayoutManager.Orientation.VERTICAL);
 		final View itemView = holder.itemView;
 
 		// final int itemId = com.car;
 
-		final int dimenId = R.dimen.com_item_dim;
 		// // if (itemId == 2) {
 		// // dimenId = R.dimen.staggered_child_medium;
 		// // } else if (itemId == 3) {
@@ -164,13 +164,12 @@ public class CarAdapter extends
 		// // span = 1;
 		// // }
 		//
-		final int size = mContext.getResources().getDimensionPixelSize(dimenId);
 
 		final StaggeredGridLayoutManager.LayoutParams lp = (StaggeredGridLayoutManager.LayoutParams) itemView
 				.getLayoutParams();
 
 		lp.span = span;
-		lp.height = size;
+		lp.height = StaggeredGridLayoutManager.LayoutParams.MATCH_PARENT;
 		lp.width = StaggeredGridLayoutManager.LayoutParams.MATCH_PARENT;
 		itemView.setLayoutParams(lp);
 
