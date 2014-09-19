@@ -10,4 +10,6 @@ public class CarMark {
 
 	@DatabaseField
 	public String name;
+	@DatabaseField
+	public String image;
 }

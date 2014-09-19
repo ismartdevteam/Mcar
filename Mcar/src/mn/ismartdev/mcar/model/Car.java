@@ -19,7 +19,8 @@ public int category_id;
 public int body_id;
 @DatabaseField
 public int model_id;
-
+@DatabaseField
+public int mark_id;
 @DatabaseField
 public String modification;
 @DatabaseField
@@ -33,11 +34,13 @@ public int distance;
 @DatabaseField
 public int distance_type;
 @DatabaseField
-public String engine;
+public double engine;
 @DatabaseField
 public int fuel;
 @DatabaseField
 public int order;
+@DatabaseField
+public int roller_type;
 @DatabaseField
 public int view_count;
 @DatabaseField

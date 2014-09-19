@@ -43,9 +43,15 @@
         <item name="android:orientation">horizontal</item>
         <item name="android:scrollbars">none</item>
     </style>
+
     <style name="TwoWayViewBaseVertical">
         <item name="android:background">#999999</item>
         <item name="android:orientation">vertical</item>
         <item name="android:scrollbars">vertical</item>
     </style>
+
+    <style name="CustomDialogTheme" parent="@android:style/Theme.Dialog">
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
 </resources>

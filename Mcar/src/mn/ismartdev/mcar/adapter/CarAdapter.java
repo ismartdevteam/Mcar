@@ -58,12 +58,18 @@ public class CarAdapter extends
 		public final TextView price;
 		public final TextView status;
 		public final TextView distance;
+		public final TextView fuel;
+		public final TextView roller;
+		public final TextView engine;
 
 		public SimpleViewHolder(View view) {
 			super(view);
 			name = (TextView) view.findViewById(R.id.car_item_name);
 			price = (TextView) view.findViewById(R.id.car_item_price);
 			status = (TextView) view.findViewById(R.id.car_item_status);
+			engine = (TextView) view.findViewById(R.id.car_item_engine);
+			fuel = (TextView) view.findViewById(R.id.car_item_fuel);
+			roller = (TextView) view.findViewById(R.id.car_item_roller_type);
 			distance = (TextView) view.findViewById(R.id.car_item_distance);
 			image = (NetworkImageView) view.findViewById(R.id.car_item_image);
 			mRequestQueue = Volley.newRequestQueue(mContext);
@@ -111,7 +117,6 @@ public class CarAdapter extends
 	@Override
 	public void onBindViewHolder(SimpleViewHolder holder, int position) {
 		Car car = mItems.get(position);
-		EnumCar enums = new EnumCar();
 		int colorId = R.color.car_status_mglnew_trans;
 		switch (car.status) {
 		case 0:
@@ -123,24 +128,27 @@ public class CarAdapter extends
 			break;
 
 		}
+		holder.fuel.setText(EnumCar.fuel[car.fuel]);
+		holder.engine.setText(car.engine+" л");
+		holder.roller.setText(EnumCar.roller[car.roller_type]);
 		holder.status.setBackgroundColor(mContext.getResources().getColor(
 				colorId));
-		holder.status.setText(enums.status[car.status]);
+		holder.status.setText(EnumCar.status[car.status]);
 		holder.distance.setText(numberToFormat(car.distance) + " "
-				+ enums.distance[car.distance_type]);
-		if(car.image_url.length()>0)
-		holder.image.setImageUrl(car.image_url, mImageLoader);
+				+ EnumCar.distance[car.distance_type]);
+		if (car.image_url.length() > 0)
+			holder.image.setImageUrl(car.image_url, mImageLoader);
 		CarModel mod = null;
 		CarMark mark = null;
 		try {
 			mod = helper.getModelDao().queryForEq("id", car.model_id).get(0);
-			mark = helper.getMarkDao().queryForEq("id", mod.mark_id).get(0);
+			mark = helper.getMarkDao().queryForEq("id", car.mark_id).get(0);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		holder.price.setText(numberToFormat(car.price) + "₮");
-		holder.name.setText(car.year + " " + mod.name + " " + mark.name);
+		holder.name.setText(car.year + " " + mark.name + " " + mod.name);
 		// boolean isVertical = (mRecyclerView.getOrientation() ==
 		// TwoWayLayoutManager.Orientation.VERTICAL);
 		final View itemView = holder.itemView;

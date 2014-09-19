@@ -327,7 +327,12 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 		private SparseArrayCompat<ScrollTabHolder> mScrollTabHolders;
 
 		private ScrollTabHolder mListener;
-
+		public void filterCar(){
+			for(int i=0;i<getCount();i++){
+				SampleListFragment frag=(SampleListFragment) getItem(i);
+				frag.setFilter();
+			}
+		}
 		public PagerAdapter(FragmentManager fm) {
 			super(fm);
 			mScrollTabHolders = new SparseArrayCompat<ScrollTabHolder>();
@@ -378,7 +383,9 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		int id = item.getItemId();
-
+		if(id==R.id.action_search_ad){
+			mPagerAdapter.filterCar();
+		}
 		if (id == android.R.id.home)
 			onBackPressed();
 		return true;

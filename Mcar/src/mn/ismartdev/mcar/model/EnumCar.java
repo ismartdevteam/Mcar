@@ -2,9 +2,9 @@ package mn.ismartdev.mcar.model;
 
 public class EnumCar {
 
-public String [] status={"Шинэ","Орж ирсэн","Явж байсан"};
-public String [] transmission ={"Механик","Автомат"};
-public String [] distance  ={"KM","mile"};
-public String [] fuel={"Бензин","Дизель","Газ"};
-
+public static String [] status={"Шинэ","Орж ирсэн","Явж байсан"};
+public static String [] transmission ={"Механик","Автомат"};
+public static String [] distance  ={"KM","mile"};
+public static String [] fuel={"Бензин","Дизель","Газ"};
+public static String [] roller={"Зөв талдаа","Буруу талдаа"};
 }

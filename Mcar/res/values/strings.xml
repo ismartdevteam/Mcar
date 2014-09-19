@@ -13,5 +13,9 @@
     <string name="action_settings">Тохиргоо</string>
     <string name="noNet">Интернет холболтоо шалгана уу...</string>
     <string name="loading">Ачаалж байна...</string>
-
-</resources>
+    <string name="mark">Марк</string>
+    <string name="model">Модел</string>
+    <string name="year">Он</string>
+    <string name="yearLater">хойш</string>
+    <string name="noData">Үр дүн байхгүй байна</string>
+</resources>

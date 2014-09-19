@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.lucasr.twowayview.TwoWayView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/car_list"
-    style="@style/TwoWayViewBaseVertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@android:color/white"
-    app:layoutManager="StaggeredGridLayoutManager"
-    app:numColumns="2"
-    app:numRows="2" />
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:padding="20dp"
+        android:text="@string/noData"
+        android:textColor="@color/car_title_color" />
+
+    <org.lucasr.twowayview.TwoWayView
+        android:id="@+id/car_list"
+        style="@style/TwoWayViewBaseVertical"
+        android:layout_width="match_parent"
+    
+        android:layout_height="match_parent"
+        app:layoutManager="StaggeredGridLayoutManager"
+        app:numColumns="2"
+        app:numRows="2" />
+
+</RelativeLayout>

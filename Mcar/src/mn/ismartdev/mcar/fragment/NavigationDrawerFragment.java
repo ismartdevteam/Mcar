@@ -57,7 +57,7 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
-    public static String [] navigationMenus={"Үндсэн","Авто Зар","Дугуйлсан машин","Түгээх","Холбоо барих"};
+    public static String [] navigationMenus={"Үндсэн","Авто Зар","Түгээх","Холбоо барих"};
     public NavigationDrawerFragment() {
     }
 

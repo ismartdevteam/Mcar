@@ -1,7 +1,21 @@
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/listView"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
-	android:cacheColorHint="@android:color/transparent"
-	android:divider="@android:color/transparent"
-	android:scrollbars="none" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:padding="20dp"
+        android:text="@string/noData"
+        android:textColor="@color/car_title_color" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@android:color/transparent"
+        android:scrollbars="none" />
+
+</RelativeLayout>

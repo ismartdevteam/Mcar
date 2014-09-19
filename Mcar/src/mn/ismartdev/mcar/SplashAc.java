@@ -142,17 +142,19 @@ public class SplashAc extends Activity {
 				car.seller_id = obj.optInt("seller_id");
 				car.seller_name = obj.optString("seller_name");
 				car.year = obj.optString("year");
+				car.roller_type=obj.optInt("roller_type");
 				car.distance_type = obj.optInt("distance_type");
+				car.mark_id=obj.optInt("mark_id");
 				CarMark mark = new CarMark();
-				mark.id = obj.optInt("mark_id");
+				mark.id =car.mark_id;
 				mark.name = obj.optString("mark_name");
-
+				mark.image = obj.optString("mark_image");
 				CarModel mod = new CarModel();
 				mod.id = obj.optInt("model_id");
 				mod.name = obj.optString("model");
 				mod.mark_id = mark.id;
 				car.model_id = mod.id;
-
+				
 				CarBody body = new CarBody();
 				body.id = obj.optInt("body_id");
 				body.name = obj.optString("body_name");
@@ -173,7 +175,7 @@ public class SplashAc extends Activity {
 				car.order = obj.optInt("order");
 
 				car.drivetrain = obj.optString("drivetrain");
-				car.engine = obj.optString("engine");
+				car.engine = obj.optDouble("engine");
 
 				car.created_date = obj.optString("created_date");
 				car.image_url = obj.optString("image_url");
@@ -183,7 +185,7 @@ public class SplashAc extends Activity {
 					helper.getMarkDao().create(mark);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					// e.printStackTrace();
 				}
 				try {
 					helper.getModelDao().create(mod);

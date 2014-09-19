@@ -51,6 +51,11 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 	private DatabaseHelper helper;
 	private boolean flag_loading = false;
 
+	public void setFilter() {
+		Log.i("hahah", mListItems.size()+"");
+		
+	}
+
 	public static Fragment newInstance(int position, int catId) {
 
 		SampleListFragment f = new SampleListFragment();
@@ -121,12 +126,11 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 		if (mScrollTabHolder != null)
 			mScrollTabHolder.onScroll(view, firstVisibleItem, visibleItemCount,
 					totalItemCount, mPosition);
-		if (firstVisibleItem+visibleItemCount == totalItemCount && totalItemCount!=0) {
+		if (firstVisibleItem + visibleItemCount == totalItemCount
+				&& totalItemCount != 0) {
 			if (flag_loading == false && isFinish == false) {
 				flag_loading = true;
 				getAd(index);
-			
-			
 
 			}
 		}
@@ -144,12 +148,12 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 							if (response != null
 									&& response.getInt("error_number") == 1) {
 								int num_rows = response.getInt("number_row");
-								
+
 								if (num_rows < 10) {
 									isFinish = true;
 									mListView.removeFooterView(load_footer);
 								}
-								index=index+10;
+								index = index + 10;
 								JSONArray data = response.getJSONArray("data");
 								makeAd(data);
 
