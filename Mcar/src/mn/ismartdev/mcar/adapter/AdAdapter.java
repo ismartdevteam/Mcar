@@ -41,12 +41,14 @@ public class AdAdapter extends ArrayAdapter<Ad> {
 	Context mContext;
 	private ImageLoader mImageLoader;
 	private RequestQueue mRequestQueue;
-	private int					lastPosition	= -1;
+	private int lastPosition = -1;
+
 	public AdAdapter(Context context, List<Ad> objects) {
 		super(context, 0, 0, objects);
 		this.mContext = context;
 		// TODO Auto-generated constructor stub
 		mRequestQueue = Volley.newRequestQueue(mContext);
+
 		mImageLoader = new ImageLoader(mRequestQueue,
 				new ImageLoader.ImageCache() {
 					private final LruCache<String, Bitmap> mCache = new LruCache<String, Bitmap>(
@@ -81,10 +83,9 @@ public class AdAdapter extends ArrayAdapter<Ad> {
 		hol.title.setText(ad.title + "");
 		hol.desc.setText(ad.description + "");
 		hol.price.setText(numberToFormat(ad.price) + "₮");
-		if(ad.images.length()>0)
-		hol.image.setImageUrl(ad.images, mImageLoader);
-		Animation animation = AnimationUtils.loadAnimation(
-				getContext(),
+		if (ad.images.length() > 0)
+			hol.image.setImageUrl(ad.images, mImageLoader);
+		Animation animation = AnimationUtils.loadAnimation(getContext(),
 				(position > lastPosition) ? R.anim.up_from_bottom
 						: R.anim.down_from_top);
 		v.startAnimation(animation);

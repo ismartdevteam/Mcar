@@ -11,9 +11,9 @@
 
         <com.android.volley.toolbox.NetworkImageView
             android:id="@+id/car_item_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+         
             android:src="@drawable/car_holder" />
 
         <TextView

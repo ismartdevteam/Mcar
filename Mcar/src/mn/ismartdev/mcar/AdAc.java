@@ -15,7 +15,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.TargetApi;
-import android.graphics.RectF;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -32,7 +31,6 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -51,8 +49,6 @@ import com.nineoldandroids.view.ViewHelper;
 public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 		ViewPager.OnPageChangeListener {
 
-	private static AccelerateDecelerateInterpolator sSmoothInterpolator = new AccelerateDecelerateInterpolator();
-
 	private KenBurnsSupportView mHeaderPicture;
 	private View mHeader;
 
@@ -64,18 +60,16 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 	private int mMinHeaderHeight;
 	private int mHeaderHeight;
 	private int mMinHeaderTranslation;
-//	private ImageView mHeaderLogo;
+	// private ImageView mHeaderLogo;
 
-	private RectF mRect1 = new RectF();
-	private RectF mRect2 = new RectF();
+	// private RectF mRect1 = new RectF();
+	// private RectF mRect2 = new RectF();
 
 	private TypedValue mTypedValue = new TypedValue();
 	private SpannableString mSpannableString;
 	private AlphaForegroundColorSpan mAlphaForegroundColorSpan;
 
 	private ActionBar actionBar;
-
-
 
 	private RequestQueue mRequestQueue;
 	private DatabaseHelper helper;
@@ -108,8 +102,8 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 			}
 		}
 		mHeaderPicture = (KenBurnsSupportView) findViewById(R.id.header_picture);
-		 mHeaderPicture.setResourceIds(R.drawable.ad1, R.drawable.ad2);
-//		mHeaderLogo = (ImageView) findViewById(R.id.header_logo);
+		mHeaderPicture.setResourceIds(R.drawable.ad1, R.drawable.ad2);
+		// mHeaderLogo = (ImageView) findViewById(R.id.header_logo);
 		mHeader = findViewById(R.id.header);
 
 		mPagerSlidingTabStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
@@ -214,7 +208,6 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 
 		currentHolder.adjustScroll((int) (mHeader.getHeight() + ViewHelper
 				.getTranslationY(mHeader)));
-	
 
 	}
 
@@ -227,8 +220,8 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 					Math.max(-scrollY, mMinHeaderTranslation));
 			float ratio = clamp(ViewHelper.getTranslationY(mHeader)
 					/ mMinHeaderTranslation, 0.0f, 1.0f);
-//			interpolate(mHeaderLogo, getActionBarIconView(),
-//					sSmoothInterpolator.getInterpolation(ratio));
+			// interpolate(mHeaderLogo, getActionBarIconView(),
+			// sSmoothInterpolator.getInterpolation(ratio));
 			setTitleAlpha(clamp(5.0F * ratio - 4.0F, 0.0F, 1.0F));
 		}
 	}
@@ -259,31 +252,31 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 		return Math.max(Math.min(value, min), max);
 	}
 
-	private void interpolate(View view1, View view2, float interpolation) {
-		getOnScreenRect(mRect1, view1);
-		getOnScreenRect(mRect2, view2);
+	// private void interpolate(View view1, View view2, float interpolation) {
+	// getOnScreenRect(mRect1, view1);
+	// getOnScreenRect(mRect2, view2);
+	//
+	// float scaleX = 1.0F + interpolation
+	// * (mRect2.width() / mRect1.width() - 1.0F);
+	// float scaleY = 1.0F + interpolation
+	// * (mRect2.height() / mRect1.height() - 1.0F);
+	// float translationX = 0.5F * (interpolation * (mRect2.left
+	// + mRect2.right - mRect1.left - mRect1.right));
+	// float translationY = 0.5F * (interpolation * (mRect2.top
+	// + mRect2.bottom - mRect1.top - mRect1.bottom));
+	//
+	// ViewHelper.setTranslationX(view1, translationX);
+	// ViewHelper.setTranslationY(view1,
+	// translationY - ViewHelper.getTranslationY(mHeader));
+	// ViewHelper.setScaleX(view1, scaleX);
+	// ViewHelper.setScaleY(view1, scaleY);
+	// }
 
-		float scaleX = 1.0F + interpolation
-				* (mRect2.width() / mRect1.width() - 1.0F);
-		float scaleY = 1.0F + interpolation
-				* (mRect2.height() / mRect1.height() - 1.0F);
-		float translationX = 0.5F * (interpolation * (mRect2.left
-				+ mRect2.right - mRect1.left - mRect1.right));
-		float translationY = 0.5F * (interpolation * (mRect2.top
-				+ mRect2.bottom - mRect1.top - mRect1.bottom));
-
-		ViewHelper.setTranslationX(view1, translationX);
-		ViewHelper.setTranslationY(view1,
-				translationY - ViewHelper.getTranslationY(mHeader));
-		ViewHelper.setScaleX(view1, scaleX);
-		ViewHelper.setScaleY(view1, scaleY);
-	}
-
-	private RectF getOnScreenRect(RectF rect, View view) {
-		rect.set(view.getLeft(), view.getTop(), view.getRight(),
-				view.getBottom());
-		return rect;
-	}
+	// private RectF getOnScreenRect(RectF rect, View view) {
+	// rect.set(view.getLeft(), view.getTop(), view.getRight(),
+	// view.getBottom());
+	// return rect;
+	// }
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public int getActionBarHeight() {
@@ -327,12 +320,14 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 		private SparseArrayCompat<ScrollTabHolder> mScrollTabHolders;
 
 		private ScrollTabHolder mListener;
-		public void filterCar(){
-			for(int i=0;i<getCount();i++){
-				SampleListFragment frag=(SampleListFragment) getItem(i);
+
+		public void filterCar() {
+			for (int i = 0; i < getCount(); i++) {
+				SampleListFragment frag = (SampleListFragment) getItem(i);
 				frag.setFilter();
 			}
 		}
+
 		public PagerAdapter(FragmentManager fm) {
 			super(fm);
 			mScrollTabHolders = new SparseArrayCompat<ScrollTabHolder>();
@@ -374,7 +369,7 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
-		getMenuInflater().inflate(R.menu.ad_menu, menu);
+//		getMenuInflater().inflate(R.menu.ad_menu, menu);
 
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -383,9 +378,9 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		int id = item.getItemId();
-		if(id==R.id.action_search_ad){
-			mPagerAdapter.filterCar();
-		}
+//		if (id == R.id.action_search_ad) {
+//			mPagerAdapter.filterCar();
+//		}
 		if (id == android.R.id.home)
 			onBackPressed();
 		return true;

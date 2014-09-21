@@ -46,6 +46,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.Where;
@@ -80,6 +81,7 @@ public class HomeFrag extends Fragment implements OnClickListener {
 	private Spinner mark;
 	private LinearLayout searchLin;
 	private carTabAdapter tabAdapter;
+	   ShowcaseView sv;
 
 	public void getScrollMaxAmount() {
 		int actualWidth = (companyList.getMeasuredWidth() - (256 * 3));
@@ -204,6 +206,13 @@ public class HomeFrag extends Fragment implements OnClickListener {
 			// if the drawer is not showing. Otherwise, let the drawer
 			// decide what to show in the action bar.
 			inflater.inflate(R.menu.main, menu);
+//		      ActionViewTarget target = new ActionViewTarget(getActivity(), ActionViewTarget.Type.HOME);
+//		        sv = new ShowcaseView.Builder(getActivity())
+//		                .setTarget(target)
+//		                .setContentTitle("menu")
+//		                .setContentText("click")
+//		                .doNotBlockTouches()
+//		                .build();
 		}
 		super.onCreateOptionsMenu(menu, inflater);
 	}

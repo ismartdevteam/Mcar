@@ -4,7 +4,7 @@
  * aapt tool from the resource data it found.  It
  * should not be modified by hand.
  */
-package android.support.v7.appcompat;
+package com.github.amlcurran.showcaseview;
 
 public final class R {
 	public static final class anim {
@@ -104,11 +104,22 @@ public final class R {
 		public static final int selectableItemBackground = 0x7f010019;
 		public static final int showAsAction = 0x7f01004d;
 		public static final int showDividers = 0x7f010055;
+		public static final int showcaseViewStyle = 0x7f010078;
 		public static final int spinnerDropDownItemStyle = 0x7f010058;
 		public static final int spinnerMode = 0x7f010052;
 		public static final int spinnerStyle = 0x7f010057;
 		public static final int subtitle = 0x7f010029;
 		public static final int subtitleTextStyle = 0x7f01002b;
+		public static final int sv_backgroundColor = 0x7f01006e;
+		public static final int sv_buttonBackgroundColor = 0x7f010071;
+		public static final int sv_buttonForegroundColor = 0x7f010072;
+		public static final int sv_buttonText = 0x7f010073;
+		public static final int sv_detailTextAppearance = 0x7f010074;
+		public static final int sv_detailTextColor = 0x7f01006f;
+		public static final int sv_showcaseColor = 0x7f010076;
+		public static final int sv_tintButtonColor = 0x7f010077;
+		public static final int sv_titleTextAppearance = 0x7f010075;
+		public static final int sv_titleTextColor = 0x7f010070;
 		public static final int textAllCaps = 0x7f01006d;
 		public static final int textAppearanceLargePopupMenu = 0x7f010014;
 		public static final int textAppearanceListItem = 0x7f010023;
@@ -159,10 +170,16 @@ public final class R {
 		public static final int abc_panel_menu_list_width = 0x7f08000b;
 		public static final int abc_search_view_preferred_width = 0x7f08000d;
 		public static final int abc_search_view_text_min_width = 0x7f08000c;
+		public static final int action_bar_offset = 0x7f080017;
+		public static final int button_margin = 0x7f080015;
 		public static final int dialog_fixed_height_major = 0x7f080013;
 		public static final int dialog_fixed_height_minor = 0x7f080014;
 		public static final int dialog_fixed_width_major = 0x7f080011;
 		public static final int dialog_fixed_width_minor = 0x7f080012;
+		public static final int showcase_radius = 0x7f080018;
+		public static final int showcase_radius_inner = 0x7f080019;
+		public static final int showcase_radius_outer = 0x7f08001a;
+		public static final int text_padding = 0x7f080016;
 	}
 	public static final class drawable {
 		public static final int abc_ab_bottom_solid_dark_holo = 0x7f020000;
@@ -252,6 +269,14 @@ public final class R {
 		public static final int abc_textfield_searchview_holo_light = 0x7f020054;
 		public static final int abc_textfield_searchview_right_holo_dark = 0x7f020055;
 		public static final int abc_textfield_searchview_right_holo_light = 0x7f020056;
+		public static final int btn_cling_normal = 0x7f02005b;
+		public static final int btn_cling_pressed = 0x7f02005c;
+		public static final int button = 0x7f02005d;
+		public static final int button_normal = 0x7f02005e;
+		public static final int cling = 0x7f020061;
+		public static final int cling_bleached = 0x7f020062;
+		public static final int cling_button_bg = 0x7f020063;
+		public static final int hand = 0x7f020090;
 	}
 	public static final class id {
 		public static final int action_bar = 0x7f050023;
@@ -306,6 +331,9 @@ public final class R {
 		public static final int showCustom = 0x7f050007;
 		public static final int showHome = 0x7f050004;
 		public static final int showTitle = 0x7f050006;
+		public static final int showcase_button = 0x7f05001a;
+		public static final int showcase_sub_text = 0x7f05001c;
+		public static final int showcase_title_text = 0x7f05001b;
 		public static final int split_action_bar = 0x7f050025;
 		public static final int submit_area = 0x7f050040;
 		public static final int tabMode = 0x7f050002;
@@ -343,6 +371,8 @@ public final class R {
 		public static final int abc_search_dropdown_item_icons_2line = 0x7f030015;
 		public static final int abc_search_view = 0x7f030016;
 		public static final int abc_simple_decor = 0x7f030017;
+		public static final int handy = 0x7f030030;
+		public static final int showcase_button = 0x7f030035;
 		public static final int support_simple_spinner_dropdown_item = 0x7f030037;
 	}
 	public static final class string {
@@ -359,8 +389,12 @@ public final class R {
 		public static final int abc_searchview_description_voice = 0x7f0a0008;
 		public static final int abc_shareactionprovider_share_with = 0x7f0a000c;
 		public static final int abc_shareactionprovider_share_with_application = 0x7f0a000b;
+		public static final int ok = 0x7f0a000d;
 	}
 	public static final class style {
+		public static final int ShowcaseButton = 0x7f0b008b;
+		public static final int ShowcaseView = 0x7f0b008d;
+		public static final int ShowcaseView_Light = 0x7f0b008c;
 		public static final int TextAppearance_AppCompat_Base_CompactMenu_Dialog = 0x7f0b0063;
 		public static final int TextAppearance_AppCompat_Base_SearchResult = 0x7f0b006d;
 		public static final int TextAppearance_AppCompat_Base_SearchResult_Subtitle = 0x7f0b006f;
@@ -400,6 +434,10 @@ public final class R {
 		public static final int TextAppearance_AppCompat_Widget_DropDownItem = 0x7f0b0021;
 		public static final int TextAppearance_AppCompat_Widget_PopupMenu_Large = 0x7f0b002e;
 		public static final int TextAppearance_AppCompat_Widget_PopupMenu_Small = 0x7f0b002f;
+		public static final int TextAppearance_ShowcaseView_Detail = 0x7f0b008f;
+		public static final int TextAppearance_ShowcaseView_Detail_Light = 0x7f0b0090;
+		public static final int TextAppearance_ShowcaseView_Title = 0x7f0b008e;
+		public static final int TextAppearance_ShowcaseView_Title_Light = 0x7f0b0091;
 		public static final int TextAppearance_Widget_AppCompat_Base_ExpandedMenu_Item = 0x7f0b0062;
 		public static final int TextAppearance_Widget_AppCompat_ExpandedMenu_Item = 0x7f0b0028;
 		public static final int Theme_AppCompat = 0x7f0b0077;
@@ -546,6 +584,8 @@ public final class R {
 		public static final int ActivityChooserView_initialActivityCount = 0;
 		public static final int[] CompatTextView = { 0x7f01006d };
 		public static final int CompatTextView_textAllCaps = 0;
+		public static final int[] CustomTheme = { 0x7f010078 };
+		public static final int CustomTheme_showcaseViewStyle = 0;
 		public static final int[] LinearLayoutICS = { 0x7f01002e, 0x7f010055, 0x7f010056 };
 		public static final int LinearLayoutICS_divider = 0;
 		public static final int LinearLayoutICS_dividerPadding = 2;
@@ -590,6 +630,17 @@ public final class R {
 		public static final int SearchView_android_maxWidth = 0;
 		public static final int SearchView_iconifiedByDefault = 3;
 		public static final int SearchView_queryHint = 4;
+		public static final int[] ShowcaseView = { 0x7f01006e, 0x7f01006f, 0x7f010070, 0x7f010071, 0x7f010072, 0x7f010073, 0x7f010074, 0x7f010075, 0x7f010076, 0x7f010077 };
+		public static final int ShowcaseView_sv_backgroundColor = 0;
+		public static final int ShowcaseView_sv_buttonBackgroundColor = 3;
+		public static final int ShowcaseView_sv_buttonForegroundColor = 4;
+		public static final int ShowcaseView_sv_buttonText = 5;
+		public static final int ShowcaseView_sv_detailTextAppearance = 6;
+		public static final int ShowcaseView_sv_detailTextColor = 1;
+		public static final int ShowcaseView_sv_showcaseColor = 8;
+		public static final int ShowcaseView_sv_tintButtonColor = 9;
+		public static final int ShowcaseView_sv_titleTextAppearance = 7;
+		public static final int ShowcaseView_sv_titleTextColor = 2;
 		public static final int[] Spinner = { 0x010100af, 0x01010175, 0x01010176, 0x01010262, 0x010102ac, 0x010102ad, 0x7f010051, 0x7f010052, 0x7f010053, 0x7f010054 };
 		public static final int Spinner_android_dropDownHorizontalOffset = 4;
 		public static final int Spinner_android_dropDownSelector = 1;
