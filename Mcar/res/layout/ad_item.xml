@@ -1,54 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/mn.ismartdev.mcar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-            android:background="@drawable/card_view" >
+    android:background="@drawable/card_view"
+    android:orientation="horizontal" >
 
+    <mn.ismartdev.mcar.util.CircleImageView
+        android:id="@+id/ad_item_image"
+        android:layout_width="@dimen/ad_item_dim"
+        android:layout_height="@dimen/ad_item_dim"
+        android:src="@drawable/car_holder"
+        
+        app:border_color="@color/mainColor"
+        app:border_width="1dp" />
 
-        <com.android.volley.toolbox.NetworkImageView
-            android:id="@+id/ad_item_image"
-            android:layout_width="@dimen/ad_item_dim"
-            android:layout_height="@dimen/ad_item_dim"
-            android:src="@drawable/car_holder" 
-            android:scaleType="centerCrop"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ad_item_dim"
+        android:orientation="vertical" >
 
-        <LinearLayout
+        <mn.ismartdev.text.Bold
+            android:id="@+id/ad_item_title"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ad_item_dim"
-            android:orientation="vertical" >
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/car_title_color" />
 
-            <TextView
-                android:id="@+id/ad_item_title"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:singleLine="true"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/car_title_color" />
+        <mn.ismartdev.text.Regular
+            android:id="@+id/ad_item_desc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/mainColor" />
 
-            <TextView
-                android:id="@+id/ad_item_desc"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:singleLine="true"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/mainColor" />
-
-            <TextView
-                android:id="@+id/ad_item_price"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:singleLine="true"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@android:color/black"
-                android:textStyle="bold" />
-        </LinearLayout>
-
+        <mn.ismartdev.text.Bold
+            android:id="@+id/ad_item_price"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 </LinearLayout>

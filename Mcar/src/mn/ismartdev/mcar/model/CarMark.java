@@ -7,7 +7,6 @@ import com.j256.ormlite.table.DatabaseTable;
 public class CarMark {
 	@DatabaseField(unique=true)
 	public int id;
-
 	@DatabaseField
 	public String name;
 	@DatabaseField

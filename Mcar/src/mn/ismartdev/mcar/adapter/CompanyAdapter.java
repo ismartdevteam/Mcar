@@ -20,12 +20,11 @@ import java.util.List;
 
 import mn.ismartdev.mcar.R;
 import mn.ismartdev.mcar.model.Company;
+import mn.ismartdev.mcar.util.LruBitmapCache;
 
 import org.lucasr.twowayview.widget.StaggeredGridLayoutManager;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.support.v4.util.LruCache;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,18 +54,7 @@ public class CompanyAdapter extends
 			name = (TextView) view.findViewById(R.id.com_item_name);
 			mRequestQueue = Volley.newRequestQueue(mContext);
 			mImageLoader = new ImageLoader(mRequestQueue,
-					new ImageLoader.ImageCache() {
-						private final LruCache<String, Bitmap> mCache = new LruCache<String, Bitmap>(
-								10);
-
-						public void putBitmap(String url, Bitmap bitmap) {
-							mCache.put(url, bitmap);
-						}
-
-						public Bitmap getBitmap(String url) {
-							return mCache.get(url);
-						}
-					});
+					new LruBitmapCache());
 		}
 	}
 

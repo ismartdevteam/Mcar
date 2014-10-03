@@ -17,6 +17,7 @@ public class MainActivity extends ActionBarActivity implements
 	 * navigation drawer.
 	 */
 	public static NavigationDrawerFragment mNavigationDrawerFragment;
+	private static final String CURRENT_FRAGMENT_TAG = "fragmentPosition";
 
 	/**
 	 * Used to store the last screen title. For use in
@@ -73,5 +74,10 @@ public class MainActivity extends ActionBarActivity implements
 		actionBar.setTitle(mTitle);
 	}
 
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putInt(CURRENT_FRAGMENT_TAG, getSupportActionBar()
+				.getSelectedNavigationIndex());
+	}
 
 }

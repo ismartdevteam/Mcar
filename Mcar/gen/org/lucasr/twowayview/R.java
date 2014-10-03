@@ -8,38 +8,38 @@ package org.lucasr.twowayview;
 
 public final class R {
 	public static final class attr {
-		public static final int colSpan = 0x7f01007e;
-		public static final int horizontalDivider = 0x7f01007c;
-		public static final int layoutManager = 0x7f010080;
-		public static final int numColumns = 0x7f010079;
-		public static final int numRows = 0x7f01007a;
-		public static final int rowSpan = 0x7f01007f;
-		public static final int span = 0x7f01007d;
-		public static final int verticalDivider = 0x7f01007b;
+		public static final int colSpan = 0x7f0100af;
+		public static final int horizontalDivider = 0x7f0100ad;
+		public static final int layoutManager = 0x7f0100b1;
+		public static final int numColumns = 0x7f0100aa;
+		public static final int numRows = 0x7f0100ab;
+		public static final int rowSpan = 0x7f0100b0;
+		public static final int span = 0x7f0100ae;
+		public static final int verticalDivider = 0x7f0100ac;
 	}
 	public static final class id {
-		public static final int item_click_support = 0x7f05001d;
-		public static final int item_selection_support = 0x7f05001e;
+		public static final int item_click_support = 0x7f080040;
+		public static final int item_selection_support = 0x7f080041;
 	}
 	public static final class styleable {
-		public static final int[] DividerItemDecoration = { 0x01010129, 0x7f01007b, 0x7f01007c };
+		public static final int[] DividerItemDecoration = { 0x01010129, 0x7f0100ac, 0x7f0100ad };
 		public static final int DividerItemDecoration_android_divider = 0;
 		public static final int DividerItemDecoration_horizontalDivider = 2;
 		public static final int DividerItemDecoration_verticalDivider = 1;
-		public static final int[] GridLayoutManager = { 0x7f010079, 0x7f01007a };
+		public static final int[] GridLayoutManager = { 0x7f0100aa, 0x7f0100ab };
 		public static final int GridLayoutManager_numColumns = 0;
 		public static final int GridLayoutManager_numRows = 1;
 		public static final int[] SpacingItemDecoration = { 0x01010114, 0x01010115 };
 		public static final int SpacingItemDecoration_android_horizontalSpacing = 0;
 		public static final int SpacingItemDecoration_android_verticalSpacing = 1;
-		public static final int[] SpannableGridViewChild = { 0x7f01007e, 0x7f01007f };
+		public static final int[] SpannableGridViewChild = { 0x7f0100af, 0x7f0100b0 };
 		public static final int SpannableGridViewChild_colSpan = 0;
 		public static final int SpannableGridViewChild_rowSpan = 1;
-		public static final int[] StaggeredGridViewChild = { 0x7f01007d };
+		public static final int[] StaggeredGridViewChild = { 0x7f0100ae };
 		public static final int StaggeredGridViewChild_span = 0;
 		public static final int[] TwoWayLayoutManager = { 0x010100c4 };
 		public static final int TwoWayLayoutManager_android_orientation = 0;
-		public static final int[] TwoWayView = { 0x7f010080 };
+		public static final int[] TwoWayView = { 0x7f0100b1 };
 		public static final int TwoWayView_layoutManager = 0;
 	}
 }

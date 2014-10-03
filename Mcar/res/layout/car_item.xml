@@ -13,10 +13,9 @@
             android:id="@+id/car_item_image"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-         
             android:src="@drawable/car_holder" />
 
-        <TextView
+        <mn.ismartdev.text.Regular
             android:id="@+id/car_item_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,22 +32,23 @@
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <TextView
+        <mn.ismartdev.text.Bold
             android:id="@+id/car_item_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="2dp"
             android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/car_title_color" />
+            android:textColor="@color/car_title_color"
+            android:textSize="14sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="horizontal" >
-         <TextView
+
+            <mn.ismartdev.text.Regular
                 android:id="@+id/car_item_engine"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -56,9 +56,11 @@
                 android:gravity="center"
                 android:padding="2dp"
                 android:singleLine="true"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/mainColor" />
-            <TextView
+                android:textColor="@color/mainColor"
+                android:textSize="10sp"
+      />
+
+            <mn.ismartdev.text.Regular
                 android:id="@+id/car_item_roller_type"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -66,10 +68,11 @@
                 android:gravity="center"
                 android:padding="2dp"
                 android:singleLine="true"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/mainColor" />
+                android:textColor="@color/mainColor"
+                android:textSize="10sp"
+          />
 
-            <TextView
+            <mn.ismartdev.text.Regular
                 android:id="@+id/car_item_fuel"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -77,29 +80,29 @@
                 android:gravity="center"
                 android:padding="2dp"
                 android:singleLine="true"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/car_fuel_color" />
+                android:textColor="@color/car_fuel_color"
+                android:textSize="10sp" />
         </LinearLayout>
 
-        <TextView
+        <mn.ismartdev.text.Light
             android:id="@+id/car_item_distance"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="2dp"
             android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/car_distance_color" />
+            android:textColor="@color/car_distance_color"
+            android:textSize="14sp" />
 
-        <TextView
+        <mn.ismartdev.text.Bold
             android:id="@+id/car_item_price"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="2dp"
             android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@android:color/black"
+            android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>
 

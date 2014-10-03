@@ -26,12 +26,11 @@ import mn.ismartdev.mcar.model.CarMark;
 import mn.ismartdev.mcar.model.CarModel;
 import mn.ismartdev.mcar.model.DatabaseHelper;
 import mn.ismartdev.mcar.model.EnumCar;
+import mn.ismartdev.mcar.util.LruBitmapCache;
 
 import org.lucasr.twowayview.widget.StaggeredGridLayoutManager;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.support.v4.util.LruCache;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,19 +73,7 @@ public class CarAdapter extends
 			image = (NetworkImageView) view.findViewById(R.id.car_item_image);
 			mRequestQueue = Volley.newRequestQueue(mContext);
 			helper = new DatabaseHelper(mContext);
-			mImageLoader = new ImageLoader(mRequestQueue,
-					new ImageLoader.ImageCache() {
-						private final LruCache<String, Bitmap> mCache = new LruCache<String, Bitmap>(
-								10);
-
-						public void putBitmap(String url, Bitmap bitmap) {
-							mCache.put(url, bitmap);
-						}
-
-						public Bitmap getBitmap(String url) {
-							return mCache.get(url);
-						}
-					});
+			mImageLoader = new ImageLoader(mRequestQueue, new LruBitmapCache());
 		}
 	}
 
@@ -129,7 +116,7 @@ public class CarAdapter extends
 
 		}
 		holder.fuel.setText(EnumCar.fuel[car.fuel]);
-		holder.engine.setText(car.engine+" л");
+		holder.engine.setText(car.engine + " л");
 		holder.roller.setText(EnumCar.roller[car.roller_type]);
 		holder.status.setBackgroundColor(mContext.getResources().getColor(
 				colorId));
@@ -137,7 +124,7 @@ public class CarAdapter extends
 		holder.distance.setText(numberToFormat(car.distance) + " "
 				+ EnumCar.distance[car.distance_type]);
 		if (car.image_url.length() > 0)
-			holder.image.setImageUrl(car.image_url, mImageLoader);
+			holder.image.setImageUrl(car.image_url.split(",")[0], mImageLoader);
 		CarModel mod = null;
 		CarMark mark = null;
 		try {
@@ -147,7 +134,7 @@ public class CarAdapter extends
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		holder.price.setText(numberToFormat(car.price) + "₮");
+		holder.price.setText(numberToFormat(car.price)+" ₮");
 		holder.name.setText(car.year + " " + mark.name + " " + mod.name);
 		// boolean isVertical = (mRecyclerView.getOrientation() ==
 		// TwoWayLayoutManager.Orientation.VERTICAL);

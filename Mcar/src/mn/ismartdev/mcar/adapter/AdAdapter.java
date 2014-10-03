@@ -21,10 +21,10 @@ import java.util.List;
 
 import mn.ismartdev.mcar.R;
 import mn.ismartdev.mcar.model.Ad;
+import mn.ismartdev.mcar.util.CircleImageView;
+import mn.ismartdev.mcar.util.LruBitmapCache;
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.support.v4.util.LruCache;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -34,7 +34,6 @@ import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
 
 public class AdAdapter extends ArrayAdapter<Ad> {
@@ -49,19 +48,7 @@ public class AdAdapter extends ArrayAdapter<Ad> {
 		// TODO Auto-generated constructor stub
 		mRequestQueue = Volley.newRequestQueue(mContext);
 
-		mImageLoader = new ImageLoader(mRequestQueue,
-				new ImageLoader.ImageCache() {
-					private final LruCache<String, Bitmap> mCache = new LruCache<String, Bitmap>(
-							10);
-
-					public void putBitmap(String url, Bitmap bitmap) {
-						mCache.put(url, bitmap);
-					}
-
-					public Bitmap getBitmap(String url) {
-						return mCache.get(url);
-					}
-				});
+		mImageLoader = new ImageLoader(mRequestQueue, new LruBitmapCache());
 	}
 
 	@Override
@@ -76,7 +63,7 @@ public class AdAdapter extends ArrayAdapter<Ad> {
 			hol.title = (TextView) v.findViewById(R.id.ad_item_title);
 			hol.desc = (TextView) v.findViewById(R.id.ad_item_desc);
 			hol.price = (TextView) v.findViewById(R.id.ad_item_price);
-			hol.image = (NetworkImageView) v.findViewById(R.id.ad_item_image);
+			hol.image = (CircleImageView) v.findViewById(R.id.ad_item_image);
 			v.setTag(hol);
 		} else
 			hol = (Holder) v.getTag();
@@ -84,7 +71,7 @@ public class AdAdapter extends ArrayAdapter<Ad> {
 		hol.desc.setText(ad.description + "");
 		hol.price.setText(numberToFormat(ad.price) + "₮");
 		if (ad.images.length() > 0)
-			hol.image.setImageUrl(ad.images, mImageLoader);
+			hol.image.setImageUrl(ad.images.split(",")[0], mImageLoader);
 		Animation animation = AnimationUtils.loadAnimation(getContext(),
 				(position > lastPosition) ? R.anim.up_from_bottom
 						: R.anim.down_from_top);
@@ -94,7 +81,7 @@ public class AdAdapter extends ArrayAdapter<Ad> {
 	}
 
 	class Holder {
-		NetworkImageView image;
+		CircleImageView image;
 		TextView title;
 		TextView desc;
 		TextView price;

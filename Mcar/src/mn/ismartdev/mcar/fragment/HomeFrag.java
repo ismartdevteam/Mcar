@@ -9,6 +9,8 @@ import mn.ismartdev.mcar.MainActivity;
 import mn.ismartdev.mcar.R;
 import mn.ismartdev.mcar.adapter.CarAdapter;
 import mn.ismartdev.mcar.adapter.CompanyAdapter;
+import mn.ismartdev.mcar.detail.CarDetailAc;
+import mn.ismartdev.mcar.detail.CompanyDetailAc;
 import mn.ismartdev.mcar.model.Car;
 import mn.ismartdev.mcar.model.CarCategory;
 import mn.ismartdev.mcar.model.CarMark;
@@ -17,17 +19,22 @@ import mn.ismartdev.mcar.model.Company;
 import mn.ismartdev.mcar.model.DatabaseHelper;
 import mn.ismartdev.mcar.model.EnumCar;
 
+import org.lucasr.twowayview.ItemClickSupport;
+import org.lucasr.twowayview.ItemClickSupport.OnItemClickListener;
 import org.lucasr.twowayview.TwoWayView;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -46,7 +53,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
-import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.Where;
@@ -81,7 +87,6 @@ public class HomeFrag extends Fragment implements OnClickListener {
 	private Spinner mark;
 	private LinearLayout searchLin;
 	private carTabAdapter tabAdapter;
-	   ShowcaseView sv;
 
 	public void getScrollMaxAmount() {
 		int actualWidth = (companyList.getMeasuredWidth() - (256 * 3));
@@ -108,7 +113,7 @@ public class HomeFrag extends Fragment implements OnClickListener {
 				}
 			};
 
-			scrollTimer.schedule(scrollerSchedule, 60, 60);
+			scrollTimer.schedule(scrollerSchedule, 70, 70);
 		}
 	}
 
@@ -166,6 +171,7 @@ public class HomeFrag extends Fragment implements OnClickListener {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 		setHasOptionsMenu(true);
+
 		helper = new DatabaseHelper(getActivity());
 		try {
 			comData = helper.getComDao().queryBuilder().orderBy("order", false)
@@ -173,6 +179,22 @@ public class HomeFrag extends Fragment implements OnClickListener {
 			comAdapter = new CompanyAdapter(getActivity(), comData);
 
 			companyList.setAdapter(comAdapter);
+			final ItemClickSupport itemClick = ItemClickSupport
+					.addTo(companyList);
+
+			itemClick.setOnItemClickListener(new OnItemClickListener() {
+				@Override
+				public void onItemClick(RecyclerView parent, View child,
+						int position, long id) {
+					Bundle b = new Bundle();
+					b.putInt("com_id", comData.get(position).id);
+					Intent comDet = new Intent(getActivity(),
+							CompanyDetailAc.class);
+					comDet.putExtras(b);
+					startActivity(comDet);
+				}
+			});
+
 			startAutoScrolling();
 			catData = helper.getCarCatDao().queryForAll();
 		} catch (SQLException e) {
@@ -182,6 +204,7 @@ public class HomeFrag extends Fragment implements OnClickListener {
 		tabAdapter = new carTabAdapter(getActivity()
 				.getSupportFragmentManager(), catData.size(), 1);
 		carPager.setAdapter(tabAdapter);
+		carPager.setOffscreenPageLimit(1);
 		tabs.setViewPager(carPager);
 	}
 
@@ -202,17 +225,11 @@ public class HomeFrag extends Fragment implements OnClickListener {
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		if (!MainActivity.mNavigationDrawerFragment.isDrawerOpen()) {
-			// Only show items in the action bar relevant to this screen
-			// if the drawer is not showing. Otherwise, let the drawer
-			// decide what to show in the action bar.
 			inflater.inflate(R.menu.main, menu);
-//		      ActionViewTarget target = new ActionViewTarget(getActivity(), ActionViewTarget.Type.HOME);
-//		        sv = new ShowcaseView.Builder(getActivity())
-//		                .setTarget(target)
-//		                .setContentTitle("menu")
-//		                .setContentText("click")
-//		                .doNotBlockTouches()
-//		                .build();
+
+			if (!companyList.isShown()) {
+				menu.getItem(0).setIcon(R.drawable.ic_action_expand);
+			}
 		}
 		super.onCreateOptionsMenu(menu, inflater);
 	}
@@ -226,6 +243,16 @@ public class HomeFrag extends Fragment implements OnClickListener {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
+
+		}
+		if (item.getItemId() == R.id.action_collapse) {
+			if (companyList.isShown()) {
+				companyList.setVisibility(View.GONE);
+				item.setIcon(R.drawable.ic_action_expand);
+			} else {
+				item.setIcon(R.drawable.ic_action_collapse);
+				companyList.setVisibility(View.VISIBLE);
 			}
 
 		}
@@ -315,8 +342,7 @@ public class HomeFrag extends Fragment implements OnClickListener {
 		@Override
 		public Fragment getItem(int position) {
 			if (type == 1)
-				return new CarsFrag().newInstance(position,
-						catData.get(position).id);
+				return CarsFrag.newInstance(position, catData.get(position).id);
 			else {
 				int selModel = 0;
 				if (modelData != null)
@@ -337,7 +363,7 @@ public class HomeFrag extends Fragment implements OnClickListener {
 
 	}
 
-	public class CarsFrag extends Fragment {
+	public static class CarsFrag extends Fragment {
 		int mNum;
 		private DatabaseHelper helper;
 		private List<Car> carsList;
@@ -346,7 +372,7 @@ public class HomeFrag extends Fragment implements OnClickListener {
 		private TwoWayView carList;
 		private int type_id;
 
-		public CarsFrag newInstance(int num, int type_id) {
+		public static CarsFrag newInstance(int num, int type_id) {
 
 			CarsFrag f = new CarsFrag();
 			// Supply num input as an argument.
@@ -376,7 +402,7 @@ public class HomeFrag extends Fragment implements OnClickListener {
 			carList = (TwoWayView) v.findViewById(R.id.car_list);
 			carList.setHasFixedSize(true);
 			carList.setLongClickable(true);
-
+			carList.setItemAnimator(new DefaultItemAnimator());
 			return v;
 		}
 
@@ -391,6 +417,23 @@ public class HomeFrag extends Fragment implements OnClickListener {
 						.eq("category_id", type_id).query();
 				adapter = new CarAdapter(getActivity(), carsList);
 				carList.setAdapter(adapter);
+				final ItemClickSupport itemClick = ItemClickSupport
+						.addTo(carList);
+
+				itemClick.setOnItemClickListener(new OnItemClickListener() {
+					@Override
+					public void onItemClick(RecyclerView parent, View child,
+							int position, long id) {
+						Bundle b = new Bundle();
+						Log.e("car id", carsList.get(position).id+" id");
+						b.putInt("car_id", carsList.get(position).id);
+						b.putInt("type_id", carsList.get(position).category_id);
+						Intent carDet = new Intent(getActivity(),
+								CarDetailAc.class);
+						carDet.putExtras(b);
+						startActivity(carDet);
+					}
+				});
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -126,7 +126,7 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 		mPagerAdapter.setTabHolderScrollingContent(this);
 
 		mViewPager.setAdapter(mPagerAdapter);
-
+		mViewPager.setOffscreenPageLimit(1);
 		mPagerSlidingTabStrip.setViewPager(mViewPager);
 		mPagerSlidingTabStrip.setOnPageChangeListener(this);
 	}

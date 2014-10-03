@@ -143,15 +143,19 @@ public class SplashAc extends Activity {
 				car.seller_name = obj.optString("seller_name");
 				car.year = obj.optString("year");
 				car.roller_type=obj.optInt("roller_type");
+				car.came_year=obj.optString("came_year");
 				car.distance_type = obj.optInt("distance_type");
 				car.mark_id=obj.optInt("mark_id");
 				CarMark mark = new CarMark();
 				mark.id =car.mark_id;
 				mark.name = obj.optString("mark_name");
+				car.mark_name=mark.name;
 				mark.image = obj.optString("mark_image");
 				CarModel mod = new CarModel();
 				mod.id = obj.optInt("model_id");
 				mod.name = obj.optString("model");
+				car.model_name=mod.name;
+				
 				mod.mark_id = mark.id;
 				car.model_id = mod.id;
 				
