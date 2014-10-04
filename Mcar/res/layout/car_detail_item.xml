@@ -10,8 +10,366 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:singleLine="true"
-        android:text="sadasd"
+
         android:textColor="@color/mainColor"
         android:textSize="14sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <com.daimajia.slider.library.SliderLayout
+                android:id="@+id/car_det_slider"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <mn.ismartdev.text.Light
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/dialog_back"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:text="@string/car_det_main"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp" >
+
+                <mn.ismartdev.text.Light
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    android:text="@string/body_type"
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+
+                <mn.ismartdev.text.Regular
+                    android:id="@+id/car_det_body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/det_item_back"
+                android:orientation="horizontal"
+                android:padding="8dp" >
+
+                <mn.ismartdev.text.Light
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    android:text="@string/modifyDate"
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+
+                <mn.ismartdev.text.Regular
+                    android:id="@+id/car_det_modify"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp" >
+
+                <mn.ismartdev.text.Light
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    android:text="@string/cameDate"
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+
+                <mn.ismartdev.text.Regular
+                    android:id="@+id/car_det_cameDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/det_item_back"
+                android:orientation="horizontal"
+                android:padding="8dp" >
+
+                <mn.ismartdev.text.Light
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    android:text="@string/status"
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+
+                <mn.ismartdev.text.Regular
+                    android:id="@+id/car_det_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp" >
+
+                <mn.ismartdev.text.Light
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    android:text="@string/distance"
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+
+                <mn.ismartdev.text.Regular
+                    android:id="@+id/car_det_distance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    
+                    android:textColor="@color/car_distance_color"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/det_item_back"
+                android:orientation="horizontal"
+                android:padding="8dp" >
+
+                <mn.ismartdev.text.Light
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    android:text="@string/roller"
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+
+                <mn.ismartdev.text.Regular
+                    android:id="@+id/car_det_roller"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp" >
+
+                <mn.ismartdev.text.Light
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    android:text="@string/fuel"
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+
+                <mn.ismartdev.text.Regular
+                    android:id="@+id/car_det_fuel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/det_item_back"
+                android:orientation="horizontal"
+                android:padding="8dp" >
+
+                <mn.ismartdev.text.Light
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    android:text="@string/engine"
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+
+                <mn.ismartdev.text.Regular
+                    android:id="@+id/car_det_engine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp" >
+
+                <mn.ismartdev.text.Light
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    android:text="@string/transmission"
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+
+                <mn.ismartdev.text.Regular
+                    android:id="@+id/car_det_trans"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/det_item_back"
+                android:orientation="horizontal"
+                android:padding="8dp" >
+
+                <mn.ismartdev.text.Light
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    android:text="@string/drivetrain"
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+
+                <mn.ismartdev.text.Regular
+                    android:id="@+id/car_det_drivetrain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+            </LinearLayout>
+<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp" >
+
+                <mn.ismartdev.text.Light
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    android:text="@string/door"
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+
+                <mn.ismartdev.text.Regular
+                    android:id="@+id/car_det_door"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    android:textColor="@color/mainColor"
+                    android:textSize="12sp" />
+            </LinearLayout>
+            <mn.ismartdev.text.Light
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/dialog_back"
+                android:gravity="left|top"
+                android:padding="8dp"
+                android:text="@string/features"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <mn.ismartdev.text.Regular
+                android:id="@+id/car_det_feautures"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left|top"
+                android:padding="8dp"
+                android:textColor="@color/mainColor"
+                android:textSize="12sp" />
+
+            <mn.ismartdev.text.Light
+                     android:id="@+id/car_det_seller_notes_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/dialog_back"
+                android:gravity="left|top"
+                android:text="@string/seller_notes"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <mn.ismartdev.text.Regular
+                android:id="@+id/car_det_seller_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                    android:padding="8dp"
+                android:gravity="left|top"
+                android:textColor="@color/mainColor"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

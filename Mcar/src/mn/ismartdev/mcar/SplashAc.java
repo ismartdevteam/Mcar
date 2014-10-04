@@ -77,7 +77,7 @@ public class SplashAc extends Activity {
 							e.printStackTrace();
 
 						}
-					
+
 					}
 				}, new Response.ErrorListener() {
 
@@ -85,7 +85,7 @@ public class SplashAc extends Activity {
 					public void onErrorResponse(VolleyError error) {
 						// TODO Auto-generated method stub
 						Log.i("error", error.getMessage() + "");
-					
+
 					}
 
 				}) {
@@ -142,23 +142,26 @@ public class SplashAc extends Activity {
 				car.seller_id = obj.optInt("seller_id");
 				car.seller_name = obj.optString("seller_name");
 				car.year = obj.optString("year");
-				car.roller_type=obj.optInt("roller_type");
-				car.came_year=obj.optString("came_year");
+				car.roller_type = obj.optInt("roller_type");
+				car.came_year = obj.optString("came_year");
+				car.features = obj.optString("features");
+				car.seller_notes = obj.optString("seller_notes");
 				car.distance_type = obj.optInt("distance_type");
-				car.mark_id=obj.optInt("mark_id");
+				car.mark_id = obj.optInt("mark_id");
+				car.door = obj.getString("door");
 				CarMark mark = new CarMark();
-				mark.id =car.mark_id;
+				mark.id = car.mark_id;
 				mark.name = obj.optString("mark_name");
-				car.mark_name=mark.name;
+				car.mark_name = mark.name;
 				mark.image = obj.optString("mark_image");
 				CarModel mod = new CarModel();
 				mod.id = obj.optInt("model_id");
 				mod.name = obj.optString("model");
-				car.model_name=mod.name;
-				
+				car.model_name = mod.name;
+
 				mod.mark_id = mark.id;
 				car.model_id = mod.id;
-				
+
 				CarBody body = new CarBody();
 				body.id = obj.optInt("body_id");
 				body.name = obj.optString("body_name");

@@ -11,12 +11,13 @@
     <string name="list_title">Жагсаалт томруулах</string>
     <string name="share_title">Хуваалцах</string>
     <string name="mark_title">Дугуйлах</string>
-        <string name="detail_error">Таарах мэдээлэл олдсонгүй</string>
+    <string name="detail_error">Таарах мэдээлэл олдсонгүй</string>
+        <string name="car_det_main">Үндсэн үзүүлэлт</string>
     <string name="ad_add_title">Зах нэмэх</string>
-        <string name="contact">Холбоо барих</string>
-            <string name="phone">Утас</string>
-             <string name="address">Хаяг</string>
-              <string name="googlemap">Газрын зураг</string>
+    <string name="contact">Холбоо барих</string>
+    <string name="phone">Утас</string>
+    <string name="address">Хаяг</string>
+    <string name="googlemap">Газрын зураг</string>
     <string name="main_ip">http://192.168.1.2/mcar/server/mobile/</string>
     <string name="action_settings">Тохиргоо</string>
     <string name="noNet">Интернет холболтоо шалгана уу</string>
@@ -26,5 +27,19 @@
     <string name="year">Он</string>
     <string name="yearLater">хойш</string>
     <string name="noData">Үр дүн байхгүй байна</string>
+    <!-- car detail -->
+    <string name="body_type">Хийц</string>
+    <string name="features">Давуу тал</string>
+    <string name="seller_notes">Худалдаалагчийн тэмдэглэл</string>
+    <string name="modifyDate">Үйлдвэрлэсэн он</string>
+    <string name="cameDate">Орж ирсэн он</string>
+    <string name="distance">Гүйлт</string>
+    <string name="status">Нөхцөл байдал</string>
+    <string name="fuel">Шатахуун</string>
+    <string name="engine">Хөдөлгүүр</string>
+    <string name="roller">Жолоо</string>
+    <string name="transmission">Хурдны хайрцаг</string>
+    <string name="drivetrain">Хөтлөгч</string>
+    <string name="door">Хаалганы тоо</string>
 
 </resources>

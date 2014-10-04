@@ -1,4 +1,4 @@
-package mn.ismartdev.mcar.model;
+package mn.ismartdev.mcar.util;
 
 public class EnumCar {
 

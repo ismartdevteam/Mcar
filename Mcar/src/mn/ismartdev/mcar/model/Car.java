@@ -18,6 +18,12 @@ public class Car {
 	@DatabaseField
 	public String mark_name;
 	@DatabaseField
+	public String features;
+	@DatabaseField
+	public String seller_notes;
+	@DatabaseField
+	public String door;
+	@DatabaseField
 	public int category_id;
 	@DatabaseField
 	public int body_id;

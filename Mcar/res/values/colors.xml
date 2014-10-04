@@ -17,5 +17,5 @@
     <color name="car_distance_color">#D41C1C</color>
         <color name="car_fuel_color">#3acc3a</color>
     <color name="car_title_color">#195C88</color>
-
+    <color name="det_item_back">#dadada</color>
 </resources>

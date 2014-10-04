@@ -1,5 +1,7 @@
 package mn.ismartdev.mcar.util;
 
+import java.text.DecimalFormat;
+
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -18,7 +20,12 @@ public class Utils {
 				.getActiveNetworkInfo();
 		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
-
+	public static String numberToFormat(int price) {
+		DecimalFormat decimalFormat = new DecimalFormat("#");
+		decimalFormat.setGroupingUsed(true);
+		decimalFormat.setGroupingSize(3);
+		return decimalFormat.format(price) + "";
+	}
 	public static void openCallIntent(Context context, String phoneNumber) {
 		String uri = "tel:" + phoneNumber;
 		Intent callIntent = new Intent(Intent.ACTION_CALL);

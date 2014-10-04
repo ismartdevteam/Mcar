@@ -17,7 +17,7 @@ import mn.ismartdev.mcar.model.CarMark;
 import mn.ismartdev.mcar.model.CarModel;
 import mn.ismartdev.mcar.model.Company;
 import mn.ismartdev.mcar.model.DatabaseHelper;
-import mn.ismartdev.mcar.model.EnumCar;
+import mn.ismartdev.mcar.util.EnumCar;
 
 import org.lucasr.twowayview.ItemClickSupport;
 import org.lucasr.twowayview.ItemClickSupport.OnItemClickListener;
@@ -425,9 +425,11 @@ public class HomeFrag extends Fragment implements OnClickListener {
 					public void onItemClick(RecyclerView parent, View child,
 							int position, long id) {
 						Bundle b = new Bundle();
-						Log.e("car id", carsList.get(position).id+" id");
+						Log.e("car id", carsList.get(position).id + " id");
 						b.putInt("car_id", carsList.get(position).id);
 						b.putInt("type_id", carsList.get(position).category_id);
+						
+//						CarDetailAc de = new CarDetailAc(carsList);
 						Intent carDet = new Intent(getActivity(),
 								CarDetailAc.class);
 						carDet.putExtras(b);

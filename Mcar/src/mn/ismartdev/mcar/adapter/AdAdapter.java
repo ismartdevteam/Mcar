@@ -16,13 +16,13 @@
 
 package mn.ismartdev.mcar.adapter;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 import mn.ismartdev.mcar.R;
 import mn.ismartdev.mcar.model.Ad;
 import mn.ismartdev.mcar.util.CircleImageView;
 import mn.ismartdev.mcar.util.LruBitmapCache;
+import mn.ismartdev.mcar.util.Utils;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
@@ -69,7 +69,7 @@ public class AdAdapter extends ArrayAdapter<Ad> {
 			hol = (Holder) v.getTag();
 		hol.title.setText(ad.title + "");
 		hol.desc.setText(ad.description + "");
-		hol.price.setText(numberToFormat(ad.price) + "₮");
+		hol.price.setText(Utils.numberToFormat(ad.price) + "₮");
 		if (ad.images.length() > 0)
 			hol.image.setImageUrl(ad.images.split(",")[0], mImageLoader);
 		Animation animation = AnimationUtils.loadAnimation(getContext(),
@@ -87,10 +87,5 @@ public class AdAdapter extends ArrayAdapter<Ad> {
 		TextView price;
 	}
 
-	private String numberToFormat(int price) {
-		DecimalFormat decimalFormat = new DecimalFormat("#");
-		decimalFormat.setGroupingUsed(true);
-		decimalFormat.setGroupingSize(3);
-		return decimalFormat.format(price) + "";
-	}
+
 }

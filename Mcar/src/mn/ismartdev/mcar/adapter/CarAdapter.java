@@ -17,7 +17,6 @@
 package mn.ismartdev.mcar.adapter;
 
 import java.sql.SQLException;
-import java.text.DecimalFormat;
 import java.util.List;
 
 import mn.ismartdev.mcar.R;
@@ -25,8 +24,9 @@ import mn.ismartdev.mcar.model.Car;
 import mn.ismartdev.mcar.model.CarMark;
 import mn.ismartdev.mcar.model.CarModel;
 import mn.ismartdev.mcar.model.DatabaseHelper;
-import mn.ismartdev.mcar.model.EnumCar;
+import mn.ismartdev.mcar.util.EnumCar;
 import mn.ismartdev.mcar.util.LruBitmapCache;
+import mn.ismartdev.mcar.util.Utils;
 
 import org.lucasr.twowayview.widget.StaggeredGridLayoutManager;
 
@@ -121,7 +121,7 @@ public class CarAdapter extends
 		holder.status.setBackgroundColor(mContext.getResources().getColor(
 				colorId));
 		holder.status.setText(EnumCar.status[car.status]);
-		holder.distance.setText(numberToFormat(car.distance) + " "
+		holder.distance.setText(Utils.numberToFormat(car.distance) + " "
 				+ EnumCar.distance[car.distance_type]);
 		if (car.image_url.length() > 0)
 			holder.image.setImageUrl(car.image_url.split(",")[0], mImageLoader);
@@ -134,7 +134,7 @@ public class CarAdapter extends
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		holder.price.setText(numberToFormat(car.price)+" ₮");
+		holder.price.setText(Utils.numberToFormat(car.price)+" ₮");
 		holder.name.setText(car.year + " " + mark.name + " " + mod.name);
 		// boolean isVertical = (mRecyclerView.getOrientation() ==
 		// TwoWayLayoutManager.Orientation.VERTICAL);
@@ -175,10 +175,5 @@ public class CarAdapter extends
 		return mItems.size();
 	}
 
-	private String numberToFormat(int price) {
-		DecimalFormat decimalFormat = new DecimalFormat("#");
-		decimalFormat.setGroupingUsed(true);
-		decimalFormat.setGroupingSize(3);
-		return decimalFormat.format(price) + "";
-	}
+
 }
