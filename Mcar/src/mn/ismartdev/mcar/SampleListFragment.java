@@ -3,10 +3,10 @@ package mn.ismartdev.mcar;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import mn.ismartdev.mcar.adapter.AdAdapter;
+import mn.ismartdev.mcar.detail.AdDetail;
 import mn.ismartdev.mcar.fragment.ScrollTabHolderFragment;
 import mn.ismartdev.mcar.model.Ad;
 import mn.ismartdev.mcar.model.DatabaseHelper;
@@ -17,6 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -25,6 +26,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -41,7 +44,7 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 	private static final String ARG_POSITION = "position";
 	private int index = 0;
 	private ListView mListView;
-	private List<Ad> mListItems;
+	private ArrayList<Ad> mListItems;
 	private int cat_id;
 	private int mPosition;
 	private View load_footer;
@@ -50,11 +53,7 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 	private boolean isFinish = false;
 	private DatabaseHelper helper;
 	private boolean flag_loading = false;
-
-	public void setFilter() {
-		Log.i("hahah", mListItems.size()+"");
-		
-	}
+	private View v;
 
 	public static Fragment newInstance(int position, int catId) {
 
@@ -77,7 +76,7 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_list, null);
+	 v = inflater.inflate(R.layout.fragment_list, container, false);
 		mListView = (ListView) v.findViewById(R.id.listView);
 		View placeHolderView = inflater.inflate(
 				R.layout.view_header_placeholder, mListView, false);
@@ -104,7 +103,20 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 			Toast.makeText(getActivity(),
 					getActivity().getString(R.string.noNet), Toast.LENGTH_SHORT)
 					.show();
+		mListView.setOnItemClickListener(new OnItemClickListener() {
 
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				Bundle b = new Bundle();
+				b.putInt("ad_id", mListItems.get(position).id);
+
+				Intent adIntent = new Intent(getActivity(), AdDetail.class);
+				adIntent.putExtras(b);
+				startActivity(adIntent);
+			}
+		});
 	}
 
 	// mListView.setAdapter(new ArrayAdapter<String>(getActivity(),
@@ -205,6 +217,7 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 				ad.description = obj.optString("desc");
 				ad.price = obj.optInt("price");
 				ad.date = obj.optString("created_date");
+				Log.i("date ad", ad.date);
 				ad.images = obj.optString("images");
 				ad.phone = obj.optString("phone");
 				ad.order = obj.optInt("order_status");

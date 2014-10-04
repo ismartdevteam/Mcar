@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" xmlns:app="http://schemas.android.com/apk/res/mn.ismartdev.mcar">
 
     <mn.ismartdev.text.Bold
         android:id="@+id/car_det_markMod"
@@ -26,6 +26,7 @@
 
             <com.daimajia.slider.library.SliderLayout
                 android:id="@+id/car_det_slider"
+                app:auto_cycle="false"
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
 

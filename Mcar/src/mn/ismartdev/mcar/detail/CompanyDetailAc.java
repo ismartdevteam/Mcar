@@ -203,7 +203,7 @@ public class CompanyDetailAc extends ActionBarActivity implements
 		imageSlider
 				.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
 		imageSlider.setCustomAnimation(new DescriptionAnimation());
-		imageSlider.setDuration(8000);
+		imageSlider.setDuration(10000);
 		setUpMapIfNeeded();
 	}
 

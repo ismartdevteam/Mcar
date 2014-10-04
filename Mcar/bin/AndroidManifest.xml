@@ -42,6 +42,8 @@
         </activity>
         <activity android:name="mn.ismartdev.mcar.detail.CarDetailAc" >
         </activity>
+        <activity android:name="mn.ismartdev.mcar.detail.AdDetail" >
+        </activity>
         <activity android:name="mn.ismartdev.mcar.MainActivity" >
         </activity>
         <activity

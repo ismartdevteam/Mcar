@@ -3,24 +3,19 @@ package mn.ismartdev.mcar.detail;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.daimajia.slider.library.SliderLayout;
-import com.daimajia.slider.library.Animations.DescriptionAnimation;
-import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.daimajia.slider.library.SliderTypes.TextSliderView;
-
 import mn.ismartdev.mcar.R;
 import mn.ismartdev.mcar.model.Car;
 import mn.ismartdev.mcar.model.CarBody;
 import mn.ismartdev.mcar.model.CarMark;
 import mn.ismartdev.mcar.model.CarModel;
 import mn.ismartdev.mcar.model.DatabaseHelper;
+import mn.ismartdev.mcar.util.CustomViewPager;
 import mn.ismartdev.mcar.util.EnumCar;
 import mn.ismartdev.mcar.util.Utils;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -33,15 +28,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
+
 public class CarDetailAc extends ActionBarActivity {
 	private DatabaseHelper helper;
 	private List<Car> cars;
-	private ViewPager pager;
+	private CustomViewPager pager;
 	private int startId;
 	private ActionBar bar;
 	private int cat_id;
 	Bundle b;
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -53,12 +54,14 @@ public class CarDetailAc extends ActionBarActivity {
 		bar.setHomeButtonEnabled(true);
 		startId = b.getInt("car_id", 1);
 		cat_id = b.getInt("type_id", 1);
-		pager = (ViewPager) findViewById(R.id.car_det_pager);
+		pager = (CustomViewPager) findViewById(R.id.car_det_pager);
+		pager.setChildId(R.id.car_det_slider);
+		pager.setOffscreenPageLimit(3);
 		helper = new DatabaseHelper(this);
 		try {
 			cars = helper.getCarDao().queryBuilder().orderBy("id", true)
-					.orderBy("order", false).where().ge("id", startId).and()
-					.eq("category_id", cat_id).query();
+					.limit(10).orderBy("order", false).where()
+					.ge("id", startId).and().eq("category_id", cat_id).query();
 			if (cars.size() > 0) {
 				pager.setAdapter(new carTabAdapter(getSupportFragmentManager(),
 						cars.size()));
@@ -133,7 +136,7 @@ public class CarDetailAc extends ActionBarActivity {
 		private TextView roller;
 		private TextView fuel;
 		private TextView engine;
-		
+
 		private TextView trans;
 		private TextView drivetrain;
 		private TextView door;
@@ -237,14 +240,14 @@ public class CarDetailAc extends ActionBarActivity {
 
 						textSliderView.getBundle().putString("extra",
 								R.drawable.car_holder + "");
-						
+
 						imageSlider.addSlider(textSliderView);
 						break;
 					}
 				}
 
 				imageSlider
-						.setPresetTransformer(SliderLayout.Transformer.Background2Foreground);
+						.setPresetTransformer(SliderLayout.Transformer.Tablet);
 				imageSlider
 						.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
 				imageSlider.setCustomAnimation(new DescriptionAnimation());
@@ -263,7 +266,7 @@ public class CarDetailAc extends ActionBarActivity {
 				engine.setText(data.engine + "");
 				trans.setText(EnumCar.transmission[data.transmission] + "");
 				drivetrain.setText(data.drivetrain + "");
-				door.setText(data.door+"");
+				door.setText(data.door + "");
 				features.setText(data.features + "");
 				if (data.seller_notes.length() < 1)
 					seller_notes_tv.setVisibility(View.GONE);
@@ -278,7 +281,7 @@ public class CarDetailAc extends ActionBarActivity {
 		@Override
 		public void onSliderClick(BaseSliderView slider) {
 			// TODO Auto-generated method stub
-
+			Log.i("position click", slider.getDescription());
 		}
 
 	}
@@ -286,7 +289,7 @@ public class CarDetailAc extends ActionBarActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
-		getMenuInflater().inflate(R.menu.car_det_menu, menu);
+		getMenuInflater().inflate(R.menu.com_det_menu, menu);
 
 		return super.onCreateOptionsMenu(menu);
 	}

@@ -29,6 +29,7 @@
     <string name="noData">Үр дүн байхгүй байна</string>
     <!-- car detail -->
     <string name="body_type">Хийц</string>
+    <string name="created_date">Оруулсан огноо</string>
     <string name="features">Давуу тал</string>
     <string name="seller_notes">Худалдаалагчийн тэмдэглэл</string>
     <string name="modifyDate">Үйлдвэрлэсэн он</string>

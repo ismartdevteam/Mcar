@@ -17,7 +17,7 @@
     <dimen name="item_border_width">1dp</dimen>
     <dimen name="car_item_dim">130dp</dimen>
     <dimen name="car_item_pad_dim">120dp</dimen>
-    <dimen name="ad_item_dim">100dp</dimen>
+    <dimen name="ad_item_dim">80dp</dimen>
     <dimen name="staggered_child_small">120dp</dimen>
     <dimen name="staggered_child_medium">244dp</dimen>
     <dimen name="staggered_child_large">250dp</dimen>

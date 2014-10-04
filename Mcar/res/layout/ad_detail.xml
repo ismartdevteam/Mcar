@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/mn.ismartdev.mcar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <com.daimajia.slider.library.SliderLayout
+            android:id="@+id/ad_det_slider"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:auto_cycle="false" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp" >
+
+            <mn.ismartdev.text.Light
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left|top"
+                android:text="@string/created_date"
+                android:textColor="@color/mainColor"
+                android:textSize="12sp" />
+
+            <mn.ismartdev.text.Regular
+                android:id="@+id/ad_detail_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left|top"
+                android:textColor="@color/mainColor"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <mn.ismartdev.text.Bold
+            android:id="@+id/ad_detail_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/mainColor"
+            android:textSize="14sp" />
+
+        <mn.ismartdev.text.Light
+            android:id="@+id/ad_detail_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/det_item_back"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/mainColor"
+            android:textSize="14sp" />
+
+        <mn.ismartdev.text.Regular
+            android:id="@+id/ad_detail_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/mainColor"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</ScrollView>
