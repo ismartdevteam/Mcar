@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="fbapp_id">339486269553382</string>
     <string name="app_name">Mcar</string>
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
@@ -10,17 +11,20 @@
     <string name="search_title">Хайх</string>
     <string name="list_title">Жагсаалт томруулах</string>
     <string name="share_title">Хуваалцах</string>
+    <string name="share_caption">Автомашины Онлайн Худалдаа</string>
     <string name="mark_title">Дугуйлах</string>
     <string name="detail_error">Таарах мэдээлэл олдсонгүй</string>
     <string name="car_det_main">Үндсэн үзүүлэлт</string>
     <string name="ad_add_title">Зар нэмэх</string>
-      <string name="fill_field"> талбарыг бөглөнө үү</string>
+    <string name="fill_field"> талбарыг бөглөнө үү</string>
     <string name="contact">Холбоо барих</string>
     <string name="phone">Утас</string>
     <string name="address">Хаяг</string>
     <string name="googlemap">Газрын зураг</string>
-    <string name="main_ip">http://192.168.1.2/mcar/server/mobile/</string>
-       <string name="main_ad_image_ip">http://192.168.1.2/mcar/image_upload/ad_image/</string>
+    <string name="main_ip">http://192.168.1.3/mcar/server/mobile/</string>
+    <string name="main_ad_image_ip">http://192.168.1.3/mcar/image_upload/ad_image/</string>
+    <string name="main_com_image_ip">http://192.168.1.3/mcar/image_upload/com_image/</string>
+    <string name="main_car_image_ip">http://192.168.1.3/mcar/image_upload/car_image/</string>
     <string name="action_settings">Тохиргоо</string>
     <string name="noNet">Интернет холболтоо шалгана уу</string>
     <string name="loading">Ачаалж байна</string>

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import mn.ismartdev.mcar.R;
+import mn.ismartdev.mcar.ShareDialog;
 import mn.ismartdev.mcar.model.Car;
 import mn.ismartdev.mcar.model.CarBody;
 import mn.ismartdev.mcar.model.CarMark;
@@ -301,6 +302,17 @@ public class CarDetailAc extends ActionBarActivity {
 		// if (id == R.id.action_search_ad) {
 		// mPagerAdapter.filterCar();
 		// }
+		if (id == R.id.action_share_det) {
+			Car data = cars.get(pager.getCurrentItem());
+			Bundle b = new Bundle();
+			b.putString("desc", data.year + " " + data.model_name + "-"
+					+ data.mark_name);
+			b.putString("image", getString(R.string.main_car_image_ip)
+					+ data.image_url.split(",")[0]);
+			ShareDialog dialog = new ShareDialog();
+			dialog.setArguments(b);
+			dialog.show(getSupportFragmentManager(), "share");
+		}
 		if (id == android.R.id.home)
 			onBackPressed();
 		return true;

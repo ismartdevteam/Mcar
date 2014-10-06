@@ -25,7 +25,6 @@ import android.os.Bundle;
 import android.provider.MediaStore.MediaColumns;
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.TelephonyManager;
-import android.test.UiThreadTest;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;

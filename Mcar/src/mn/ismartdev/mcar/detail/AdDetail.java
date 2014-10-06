@@ -3,6 +3,7 @@ package mn.ismartdev.mcar.detail;
 import java.sql.SQLException;
 
 import mn.ismartdev.mcar.R;
+import mn.ismartdev.mcar.ShareDialog;
 import mn.ismartdev.mcar.model.Ad;
 import mn.ismartdev.mcar.model.DatabaseHelper;
 import mn.ismartdev.mcar.util.Utils;
@@ -117,6 +118,15 @@ public class AdDetail extends ActionBarActivity implements
 		// if (id == R.id.action_search_ad) {
 		// mPagerAdapter.filterCar();
 		// }
+		if (id == R.id.action_share_det) {
+			Bundle b = new Bundle();
+			b.putString("desc", data.title);
+			b.putString("image", getString(R.string.main_ad_image_ip)
+					+ data.images.split(",")[0]);
+			ShareDialog dialog = new ShareDialog();
+			dialog.setArguments(b);
+			dialog.show(getSupportFragmentManager(), "share");
+		}
 		if (id == android.R.id.home)
 			onBackPressed();
 		return true;

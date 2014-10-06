@@ -3,6 +3,7 @@ package mn.ismartdev.mcar.detail;
 import java.sql.SQLException;
 
 import mn.ismartdev.mcar.R;
+import mn.ismartdev.mcar.ShareDialog;
 import mn.ismartdev.mcar.model.Company;
 import mn.ismartdev.mcar.model.DatabaseHelper;
 import android.app.AlertDialog;
@@ -228,6 +229,15 @@ public class CompanyDetailAc extends ActionBarActivity implements
 		// if (id == R.id.action_search_ad) {
 		// mPagerAdapter.filterCar();
 		// }
+		if (id == R.id.action_share_det) {
+			Bundle b = new Bundle();
+			b.putString("desc", company.name + "-" + company.description);
+			b.putString("image", getString(R.string.main_com_image_ip)
+					+ company.logo);
+			ShareDialog dialog = new ShareDialog();
+			dialog.setArguments(b);
+			dialog.show(getSupportFragmentManager(), "share");
+		}
 		if (id == android.R.id.home)
 			onBackPressed();
 		return true;
