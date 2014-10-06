@@ -54,11 +54,12 @@ public class AdDetail extends ActionBarActivity implements
 					textSliderView
 							.description(
 									Utils.numberToFormat(data.price) + " ₮")
-							.image(url)
+							.image(getString(R.string.main_ad_image_ip) + url)
 							.setScaleType(BaseSliderView.ScaleType.CenterCrop)
 							.setOnSliderClickListener(this);
 
-					textSliderView.getBundle().putString("extra", url);
+					textSliderView.getBundle().putString("extra",
+							getString(R.string.main_ad_image_ip) + url);
 
 					imageSlider.addSlider(textSliderView);
 				} else {

@@ -71,7 +71,11 @@ public class AdAdapter extends ArrayAdapter<Ad> {
 		hol.desc.setText(ad.description + "");
 		hol.price.setText(Utils.numberToFormat(ad.price) + "₮");
 		if (ad.images.length() > 0)
-			hol.image.setImageUrl(ad.images.split(",")[0], mImageLoader);
+			hol.image.setImageUrl(
+					mContext.getResources()
+							.getString(R.string.main_ad_image_ip)
+							+ ""
+							+ ad.images.split(",")[0], mImageLoader);
 		Animation animation = AnimationUtils.loadAnimation(getContext(),
 				(position > lastPosition) ? R.anim.up_from_bottom
 						: R.anim.down_from_top);
@@ -86,6 +90,5 @@ public class AdAdapter extends ArrayAdapter<Ad> {
 		TextView desc;
 		TextView price;
 	}
-
 
 }

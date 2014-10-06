@@ -15,6 +15,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -60,10 +62,6 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 	private int mMinHeaderHeight;
 	private int mHeaderHeight;
 	private int mMinHeaderTranslation;
-	// private ImageView mHeaderLogo;
-
-	// private RectF mRect1 = new RectF();
-	// private RectF mRect2 = new RectF();
 
 	private TypedValue mTypedValue = new TypedValue();
 	private SpannableString mSpannableString;
@@ -73,6 +71,7 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 
 	private RequestQueue mRequestQueue;
 	private DatabaseHelper helper;
+	private ProgressDialog progress;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,12 +84,15 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 		mMinHeaderTranslation = -mMinHeaderHeight + getActionBarHeight();
 
 		setContentView(R.layout.seller_main);
+		progress = ProgressDialog.show(AdAc.this, "",
+				getString(R.string.loading));
 		helper = new DatabaseHelper(this);
 		mRequestQueue = Volley.newRequestQueue(this);
 		if (Utils.isNetworkAvailable(this)) {
 			getAdsCat();
 
 		} else {
+			progress.dismiss();
 			Toast.makeText(this, getString(R.string.noNet), Toast.LENGTH_SHORT)
 					.show();
 			try {
@@ -122,6 +124,7 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 	}
 
 	private void setAdapters() {
+		progress.dismiss();
 		mPagerAdapter = new PagerAdapter(getSupportFragmentManager());
 		mPagerAdapter.setTabHolderScrollingContent(this);
 
@@ -154,7 +157,7 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 
 					@Override
 					public void onResponse(JSONObject response) {
-
+						
 						try {
 							if (response != null
 									&& response.getInt("error_number") == 1) {
@@ -336,7 +339,7 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
-		// getMenuInflater().inflate(R.menu.ad_menu, menu);
+		getMenuInflater().inflate(R.menu.ad_menu, menu);
 
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -345,9 +348,10 @@ public class AdAc extends ActionBarActivity implements ScrollTabHolder,
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		int id = item.getItemId();
-		// if (id == R.id.action_search_ad) {
-		// mPagerAdapter.filterCar();
-		// }
+		if (id == R.id.action_add_ad) {
+			startActivity(new Intent(AdAc.this, AddAd.class));
+
+		}
 		if (id == android.R.id.home)
 			onBackPressed();
 		return true;

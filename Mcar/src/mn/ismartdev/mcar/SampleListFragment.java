@@ -17,6 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -73,7 +74,7 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 		mListItems = new ArrayList<Ad>();
 	}
 
-	@Override
+	@SuppressLint("InflateParams") @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 	 v = inflater.inflate(R.layout.fragment_list, container, false);
@@ -83,7 +84,7 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 		mListView.addHeaderView(placeHolderView);
 
 		load_footer = inflater.inflate(R.layout.list_load_footer, null);
-		mListView.addFooterView(load_footer);
+	
 		return v;
 	}
 
@@ -110,7 +111,7 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 					int position, long id) {
 				// TODO Auto-generated method stub
 				Bundle b = new Bundle();
-				b.putInt("ad_id", mListItems.get(position).id);
+				b.putInt("ad_id", mListItems.get(position-1).id);
 
 				Intent adIntent = new Intent(getActivity(), AdDetail.class);
 				adIntent.putExtras(b);
@@ -143,12 +144,12 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 			if (flag_loading == false && isFinish == false) {
 				flag_loading = true;
 				getAd(index);
-
 			}
 		}
 	}
 
-	private void getAd(final int sIndex) {
+	private void getAd(final int sIndex) {	
+		mListView.addFooterView(load_footer);
 		CustomRequest adReq = new CustomRequest(Method.POST,
 				this.getString(R.string.main_ip) + "ad.php", null,
 				new Listener<JSONObject>() {
@@ -163,7 +164,6 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 
 								if (num_rows < 10) {
 									isFinish = true;
-									mListView.removeFooterView(load_footer);
 								}
 								index = index + 10;
 								JSONArray data = response.getJSONArray("data");
@@ -179,7 +179,7 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-
+						mListView.removeFooterView(load_footer);
 					}
 				}, new Response.ErrorListener() {
 
@@ -187,7 +187,7 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 					public void onErrorResponse(VolleyError error) {
 						// TODO Auto-generated method stub
 						Log.i("error", error.getMessage() + "");
-
+						mListView.removeFooterView(load_footer);
 					}
 
 				}) {
@@ -214,10 +214,9 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 				JSONObject obj = data.getJSONObject(i);
 				ad.category_id = obj.optInt("category_id");
 				ad.title = obj.optString("title");
-				ad.description = obj.optString("desc");
+				ad.description = obj.optString("description");
 				ad.price = obj.optInt("price");
 				ad.date = obj.optString("created_date");
-				Log.i("date ad", ad.date);
 				ad.images = obj.optString("images");
 				ad.phone = obj.optString("phone");
 				ad.order = obj.optInt("order_status");
@@ -227,7 +226,6 @@ public class SampleListFragment extends ScrollTabHolderFragment implements
 			}
 		} else {
 			isFinish = true;
-			mListView.removeFooterView(load_footer);
 		}
 
 		adapter.notifyDataSetChanged();

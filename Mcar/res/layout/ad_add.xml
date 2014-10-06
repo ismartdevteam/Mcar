@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:scrollbars="none" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/ad_add_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="50"
+            android:hint="@string/title"
+            android:maxLength="50" />
+
+        <EditText
+            android:id="@+id/ad_add_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/price"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/ad_add_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="180"
+            android:gravity="left|top"
+            android:hint="@string/desc"
+            android:lines="4"
+            android:maxLength="180" />
+
+        <EditText
+            android:id="@+id/ad_add_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="25"
+            android:gravity="left|top"
+            android:hint="@string/phone"
+            android:maxLength="25" />
+
+        <Spinner
+            android:id="@+id/ad_add_cat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:paddingTop="10dp" >
+
+            <ImageView
+                android:id="@+id/ad_add_image1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:src="@drawable/add_item" />
+
+            <ImageView
+                android:id="@+id/ad_add_image2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:src="@drawable/add_item" />
+
+            <ImageView
+                android:id="@+id/ad_add_image3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:src="@drawable/add_item" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/ad_add_new"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/search_but"
+            android:padding="10dp"
+            android:text="@string/ad_add_title"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</ScrollView>

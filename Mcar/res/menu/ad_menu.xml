@@ -2,14 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" >
 
-    <item
-        android:id="@+id/action_search_ad"
-        android:icon="@drawable/ic_action_search"
-        android:title="@string/search_title"
-        app:showAsAction="always"/>
+
     <item
         android:id="@+id/action_add_ad"
-        android:icon="@drawable/ic_action_new"
+        android:icon="@drawable/ad_add"
         android:orderInCategory="0"
         android:title="@string/ad_add_title"
         app:showAsAction="always"/>
