@@ -2091,7 +2091,7 @@ containing a value of this type.
         public static final int com_facebook_list_section_header_background=0x7f02006c;
         public static final int com_facebook_loginbutton_silver=0x7f02006d;
         public static final int com_facebook_logo=0x7f02006e;
-        public static final int com_facebook_picker_default_separator_color=0x7f0200b8;
+        public static final int com_facebook_picker_default_separator_color=0x7f0200b9;
         public static final int com_facebook_picker_item_background=0x7f02006f;
         public static final int com_facebook_picker_list_focused=0x7f020070;
         public static final int com_facebook_picker_list_longpressed=0x7f020071;
@@ -2165,6 +2165,7 @@ containing a value of this type.
         public static final int splash_android=0x7f0200b5;
         public static final int splash_back=0x7f0200b6;
         public static final int splash_icon=0x7f0200b7;
+        public static final int walk_one=0x7f0200b8;
     }
     public static final class id {
         public static final int Accordion=0x7f08002f;

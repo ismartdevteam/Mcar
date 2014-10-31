@@ -347,7 +347,7 @@ public class HomeFrag extends Fragment implements OnClickListener {
 				int selModel = 0;
 				if (modelData != null)
 					selModel = modelData.get(model.getSelectedItemPosition()).id;
-				return new filterFrag().newInstance(position,
+				return  filterFrag.newInstance(position,
 						catData.get(position).id,
 						status.getSelectedItemPosition(),
 						markData.get(mark.getSelectedItemPosition()).id,
@@ -445,7 +445,7 @@ public class HomeFrag extends Fragment implements OnClickListener {
 
 	}
 
-	public class filterFrag extends Fragment {
+	public  static class filterFrag extends Fragment {
 		int mNum;
 		public DatabaseHelper helper;
 		public List<Car> carsList;
@@ -458,7 +458,7 @@ public class HomeFrag extends Fragment implements OnClickListener {
 		private int status_id;
 		private String yearStr;
 
-		public filterFrag newInstance(int num, int type_id, int status,
+		public static filterFrag newInstance(int num, int type_id, int status,
 				int mark, int model, String year) {
 
 			filterFrag f = new filterFrag();
