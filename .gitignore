@@ -1,3 +1,4 @@
+Mcar/bin/
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -35,4 +36,3 @@ Icon
 .Spotlight-V100
 .Trashes
 
-/Mcar/bin/*
